@@ -33,19 +33,23 @@ function DBaction ($data) {
         $data_row[$value] = ['value'=>$data['value'][$key],'version'=>(int)$data['version'][$key]];
     }
 
+    $dsn = "mysql:dbname = uniweb_test; host=localhost";
+    $user = "root";
+    $password = "";
+
     //connection with mysql
-    $conn = new mysqli("localhost","root","","uniweb_test");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    try {
+        $conn = new PDO($dsn, $user, $password);
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
     }
     echo "Connected successfully"."<br/>";
 
-    $query = "SELECT * FROM uniweb_test.data";
-    $arr_db = $conn->query($query);
+    $arr_db = $conn->query("SELECT * FROM uniweb_test.data");
 
     //transform data from mysql
     $arr_db_row = [];
-    while($row = mysqli_fetch_array($arr_db)) {
+    while($row = $arr_db->fetch(PDO::FETCH_ASSOC)) {
         $arr_db_row[$row['ident']] = ['value'=>$row['value'],'version'=>(int)$row['version']];
     }
 
@@ -75,7 +79,7 @@ function DBaction ($data) {
         }
     }
 
-    return $finish_arr;
+    return serialize($finish_arr);
 }
 
 
