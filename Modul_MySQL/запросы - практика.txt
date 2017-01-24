@@ -14,7 +14,7 @@ SELECT COUNT(code) FROM `products` WHERE Price > 200
 4. Для каждого товара выбрать название, цену, название производителя
 	
 SELECT products.Name AS P_name,Price,manufacturers.Name AS M_name
-	FROM `products` 
+	FROM `products`
 		JOIN manufacturers ON Manufacturer = manufacturers.Code
 
 5. Показать по каждому производителю его имя и среднюю цену на его товары.
@@ -42,12 +42,11 @@ SELECT products.Name AS P_name, products.Price AS price, manufacturers.Name AS M
 
 8. По каждому производителю вывести самый дорогой его товар и его цену.
 
-!!!!!!!!!!!!!!!!!!!!
-
-SELECT manufacturers.Code,manufacturers.Name AS M_name, products.Name AS P_name, MAX(products.Price) AS price
-	FROM `manufacturers`
-    		JOIN products ON manufacturers.Code = products.Manufacturer
-        		GROUP BY M_name
+SELECT P.Manufacturer,M.Name,P.Price,P.Name
+	FROM Products P
+    	JOIN Manufacturers M ON P.Manufacturer = M.Code
+    	WHERE P.Price = (SELECT MAX(P2.Price) FROM Products P2 WHERE P2.Manufacturer = P.Manufacturer)
+        	ORDER BY P.Manufacturer
 
 9. Для всех товаров, чья цена превышает 200 - применить скидку 10% (уменьшить цену на 10%)
 
