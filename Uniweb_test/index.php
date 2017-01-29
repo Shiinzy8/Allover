@@ -45,7 +45,8 @@ function DBaction ($data) {
     }
     echo "Connected successfully"."<br/>";
 
-    $arr_db = $conn->query("SELECT * FROM uniweb_test.data");
+    $query = "SELECT * FROM uniweb_test.data";
+    $arr_db = $conn->query($query);
 
     //transform data from mysql
     $arr_db_row = [];
