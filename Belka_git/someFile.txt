@@ -1,1 +1,2 @@
-text in some file
+text  in some file
+second changes by andrii
