@@ -1,2 +1,3 @@
-text in some file
 Hi, my friends! From Olga
+text  in some file
+second strange changes by andrii
