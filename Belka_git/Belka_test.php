@@ -6,5 +6,8 @@
  * Time: 13:09
  */
 
-echo "Start"; die;First fill on lectutre
-; echo 'Second commet';
+echo "Start";
+echo "First fill on lectutre";
+echo 'Second commet';
+
+die;

@@ -1,138 +1,155 @@
-﻿v bnm m./БАЗА ТОВАРЫ
-1. Выбрать товары по цене от 100 до 200
+﻿# v bnm m./БАЗА ТОВАРЫ
+# 1. Выбрать товары по цене от 100 до 200
 
-SELECT * FROM `products` WHERE Price BETWEEN 100 AND 200
+SELECT *
+	FROM `products`
+		WHERE Price
+			BETWEEN 100 AND 200;
 
-2. Выбрать среднюю цену товара у производителя с кодом 2
+# 2. Выбрать среднюю цену товара у производителя с кодом 2
 
-SELECT AVG(Price) FROM `products` WHERE Manufacturer = 2
+SELECT AVG(Price)
+	FROM `products`
+		WHERE Manufacturer = 2;
 
-3. Посчитать количество товаров по цене выше 200.
+# 3. Посчитать количество товаров по цене выше 200.
 
-SELECT COUNT(code) FROM `products` WHERE Price > 200
+SELECT COUNT(code)
+	FROM `products`
+		WHERE Price > 200;
 
-4. Для каждого товара выбрать название, цену, название производителя
-	
+# 4. Для каждого товара выбрать название, цену, название производителя
+
 SELECT products.Name AS P_name,Price,manufacturers.Name AS M_name
 	FROM `products`
-		JOIN manufacturers ON Manufacturer = manufacturers.Code
+		JOIN manufacturers ON Manufacturer = manufacturers.Code;
 
-5. Показать по каждому производителю его имя и среднюю цену на его товары.
+# 5. Показать по каждому производителю его имя и среднюю цену на его товары.
 
 SELECT manufacturers.Name AS M_name, AVG(products.Price) AS AVG_price
-	FROM `manufacturers` 
+	FROM `manufacturers`
 		JOIN products ON manufacturers.Code = products.Manufacturer
-        		GROUP BY M_name
+      GROUP BY M_name;
 
-6. Отобрать названия производителей, чья средняя цена на товар больше 150.
+# 6. Отобрать названия производителей, чья средняя цена на товар больше 150.
 
 SELECT manufacturers.Name AS M_name
-	FROM `manufacturers` 
+	FROM `manufacturers`
 		JOIN products ON manufacturers.Code = products.Manufacturer
-        		GROUP BY M_name
-            			HAVING AVG(products.Price) > 150
+      GROUP BY M_name
+        HAVING AVG(products.Price) > 150;
 
-7. Вывести самый дешёвый товар и название его производителя.
+# 7. Вывести самый дешёвый товар и название его производителя.
 
-SELECT products.Name AS P_name, products.Price AS price, manufacturers.Name AS M_name 
-	FROM `products` 
-    		JOIN manufacturers ON products.Manufacturer = manufacturers.Code 
-        		ORDER BY price
-            			LIMIT 1
+SELECT products.Name AS P_name, products.Price AS price, manufacturers.Name AS M_name
+	FROM `products`
+    JOIN manufacturers ON products.Manufacturer = manufacturers.Code
+      ORDER BY price
+        LIMIT 1;
 
-8. По каждому производителю вывести самый дорогой его товар и его цену.
+# 8. По каждому производителю вывести самый дорогой его товар и его цену.
 
 SELECT P.Manufacturer,M.Name,P.Price,P.Name
 	FROM Products P
-    	JOIN Manufacturers M ON P.Manufacturer = M.Code
+    JOIN Manufacturers M ON P.Manufacturer = M.Code
     	WHERE P.Price = (SELECT MAX(P2.Price) FROM Products P2 WHERE P2.Manufacturer = P.Manufacturer)
-        	ORDER BY P.Manufacturer
+        ORDER BY P.Manufacturer;
 
-9. Для всех товаров, чья цена превышает 200 - применить скидку 10% (уменьшить цену на 10%)
+# 9. Для всех товаров, чья цена превышает 200 - применить скидку 10% (уменьшить цену на 10%)
 
-Если на обновление таблицы
+# Если на обновление таблицы
+
 UPDATE products
- SET products.Price = products.Price * 0.9
- WHERE products.Price > 200
+	SET products.Price = products.Price * 0.9
+ 		WHERE products.Price > 200;
 
-Если на вывод цены со скидкой
-SELECT products.Price * 0.9 FROM products WHERE products.Price > 200
+# Если на вывод цены со скидкой
 
-БАЗА СКЛАД
-1. Выбрать среднюю стоимость(value) контейнера(box) по каждому из складов
+SELECT products.Price * 0.9
+	FROM products
+		WHERE products.Price > 200;
+
+# БАЗА СКЛАД
+# 1. Выбрать среднюю стоимость(value) контейнера(box) по каждому из складов
 
 SELECT warehouses.Code, AVG(boxes.Value)
 	FROM `warehouses`
-    		JOIN boxes ON warehouses.Code = boxes.Warehouse
-        		GROUP BY warehouses.Code
+    JOIN boxes ON warehouses.Code = boxes.Warehouse
+      GROUP BY warehouses.Code DESC;
 
-2. Отобрать склады, где средняя стоимость контейнера больше 150.
+# 2. Отобрать склады, где средняя стоимость контейнера больше 150.
 
 SELECT warehouses.Code,warehouses.Location
 	FROM `warehouses`
-    		JOIN boxes ON warehouses.Code = boxes.Warehouse
-        		GROUP BY warehouses.Code
-            			HAVING AVG(boxes.Value) > 150
+    JOIN boxes ON warehouses.Code = boxes.Warehouse
+      GROUP BY warehouses.Code
+        HAVING AVG(boxes.Value) > 150;
 
-3. Вывести для каждого контейнера город(склад) где он находится.
+# 3. Вывести для каждого контейнера город(склад) где он находится.
 
-SELECT boxes.Code, warehouses.Location 
+SELECT boxes.Code, warehouses.Location
 	FROM `boxes`
-    		JOIN warehouses ON boxes.Warehouse = warehouses.Code
+    JOIN warehouses ON boxes.Warehouse = warehouses.Code;
 
-4. Вывести склады, которые уже "переполнены". Это значит, что кол-во контейнеров на этом складе больше, чем его вместимость(поле capacity в таблице warehouse)
+# 4. Вывести склады, которые уже "переполнены". Это значит, что кол-во контейнеров
+# на этом складе больше, чем его вместимость(поле capacity в таблице warehouse)
 
 SELECT warehouses.Code, warehouses.Capacity, COUNT(boxes.Code) As Count_box
 	FROM `warehouses`
-    		JOIN boxes ON warehouses.Code = boxes.Warehouse
-        		GROUP BY warehouses.Code
+    JOIN boxes ON warehouses.Code = boxes.Warehouse
+      GROUP BY warehouses.Code
+        HAVING COUNT(boxes.Code) > Capacity;
 
-5. Выбрать кода всех контейнеров из города Chicago 
+# 5. Выбрать кода всех контейнеров из города Chicago
 
 SELECT warehouses.Location,warehouses.Code, boxes.Code
-	FROM warehouses 
-    		JOIN boxes ON warehouses.Code = boxes.Warehouse 
-        		WHERE warehouses.Location = "Chicago"
+	FROM warehouses
+    JOIN boxes ON warehouses.Code = boxes.Warehouse
+      WHERE warehouses.Location = "Chicago";
 
-
-БАЗА СОТРУДНИКИ
-1. Выбрать всех сотрудников, чья фамилия начинается с S
-
-select employees.LastName from employees where employees.LastName LIKE 'S%';
-
-2. Выбрать всех сотрудников из департаментов 37 и 77
-
-SELECT employees.Name,employees.LastName,employees.Department 
-	FROM `employees`
-		WHERE employees.Department IN (37,77)
-
-3. По каждому департаменту вывести его название и кол-во сотрудников в нём.
-
-SELECT departments.Name, COUNT(employees.SSN) as Count_e 
-	FROM `departments`
-		JOIN employees ON departments.Code = employees.Department
-			GROUP BY departments.Name
-
-4. Вывести имена сотрудников, которые работают в департаменте с бюджетом более 60000
+# БАЗА СОТРУДНИКИ
+# 1. Выбрать всех сотрудников, чья фамилия начинается с S
 
 SELECT employees.LastName
-	FROM `employees` 
+	FROM employees
+		WHERE employees.LastName
+			LIKE 'S%';
+
+# 2. Выбрать всех сотрудников из департаментов 37 и 77
+
+SELECT employees.Name,employees.LastName,employees.Department
+	FROM `employees`
+		WHERE employees.Department IN (37,77);
+
+# 3. По каждому департаменту вывести его название и кол-во сотрудников в нём.
+
+SELECT departments.Name, COUNT(employees.SSN) as Count_e
+	FROM `departments`
+		JOIN employees ON departments.Code = employees.Department
+			GROUP BY departments.Name;
+
+# 4. Вывести имена сотрудников, которые работают в департаменте с бюджетом более 60000
+
+SELECT employees.LastName
+	FROM `employees`
 		JOIN departments ON employees.Department = departments.Code
 			where departments.Budget > 60000;
 
-5. Выбрать названия департаментов, где работает более 2-х сотрудников
+# 5. Выбрать названия департаментов, где работает более 2-х сотрудников
 
 SELECT departments.Name
 	FROM `departments`
 		JOIN employees ON employees.Department = departments.Code
 			GROUP BY departments.Name
-				HAVING COUNT(employees.SSN)>2
+				HAVING COUNT(employees.SSN)>2;
 
-6. Вывести имена сотрудников, работающих в департаменте со ВТОРЫМ по величине бюджетом.
+# 6. Вывести имена сотрудников, работающих в департаменте со ВТОРЫМ по величине бюджетом.
 
 SELECT employees.Name,employees.LastName, employees.Department
 	FROM `employees`
-    		JOIN departments ON departments.Code = employees.Department
-        		WHERE departments.Budget = (SELECT departments.Budget
-                                       			FROM `departments`
-                                       				ORDER BY departments.Budget DESC LIMIT 1,1)
+    JOIN departments ON departments.Code = employees.Department
+      WHERE departments.Budget = (SELECT departments.Budget
+                                    FROM `departments`
+                                      ORDER BY departments.Budget DESC
+																				LIMIT 1,1);
+
