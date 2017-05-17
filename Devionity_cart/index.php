@@ -18,7 +18,6 @@ Hello World!
      * https://devionity.com/ru/projects
      */
 
-
     $db_host = 'localhost';
     $db_user = 'root';
     $db_password = '';
