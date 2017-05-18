@@ -1,25 +1,50 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ADAM
- * Date: 18.05.2017
- * Time: 1:20
+ * Class Cart
  */
 
 class Cart
 {
+    /**
+     * Products array
+     *
+     * @var array|mixed
+     */
     private $products;
 
+
+    /**
+     *  Constructor
+     */
     function __construct()
     {
-        $this->products = is_null(Cookie::get('book')) ? array() : unserialize(Cookie::get('books'));
+        $this->products = Cookie::get('books') == null ?
+            array()
+            :
+            unserialize(Cookie::get('books'));
     }
 
-    function getProducts()
+
+    /**
+     * products getter
+     *
+     * @return mixed
+     */
+    public function getProducts($for_sql = false)
     {
+        if ($for_sql) {
+            return implode(',', $this->products);
+        }
+
         return $this->products;
     }
 
+
+    /**
+     * adding product
+     *
+     * @param $id
+     */
     public function addProduct($id)
     {
         $id = (int)$id;
@@ -31,6 +56,12 @@ class Cart
         Cookie::set('books', serialize($this->products));
     }
 
+
+    /**
+     * deleting product
+     *
+     * @param $id
+     */
     public function deleteProduct($id)
     {
         $id = (int)$id;
@@ -43,13 +74,25 @@ class Cart
         Cookie::set('books', serialize($this->products));
     }
 
+
+    /**
+     *  clear cart
+     */
     public function clear()
     {
         Cookie::delete('books');
     }
 
+
+
+    /**
+     * check if empty
+     *
+     * @return bool
+     */
     public function isEmpty()
     {
         return !$this->products;
     }
+
 }
