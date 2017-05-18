@@ -12,7 +12,6 @@ class Cart
      */
     private $products;
 
-
     /**
      *  Constructor
      */
@@ -20,10 +19,8 @@ class Cart
     {
         $this->products = Cookie::get('books') == null ?
             array()
-            :
-            unserialize(Cookie::get('books'));
+            : unserialize(Cookie::get('books'));
     }
-
 
     /**
      * products getter
@@ -38,7 +35,6 @@ class Cart
 
         return $this->products;
     }
-
 
     /**
      * adding product
@@ -55,7 +51,6 @@ class Cart
 
         Cookie::set('books', serialize($this->products));
     }
-
 
     /**
      * deleting product
@@ -74,7 +69,6 @@ class Cart
         Cookie::set('books', serialize($this->products));
     }
 
-
     /**
      *  clear cart
      */
@@ -82,8 +76,6 @@ class Cart
     {
         Cookie::delete('books');
     }
-
-
 
     /**
      * check if empty
@@ -94,5 +86,4 @@ class Cart
     {
         return !$this->products;
     }
-
 }

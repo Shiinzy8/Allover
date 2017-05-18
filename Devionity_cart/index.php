@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Это ваш новый проект</title>
-    <meta charset='utf-8'>
-</head>
-<body>
-Hello World!
-<br/>
-<br/>
-
 <?php
+echo'<!DOCTYPE html>';
+echo'<html>';
+echo'<head>';
+    echo'<title>Это ваш новый проект</title>';
+    echo'<meta charset="utf-8">';
+echo'</head>';
+echo'<body>';
+echo'Hello World!';
+echo'<br/>';
+echo'<br/>';
 
 /*
  * Тестовая база данных, используемая в примере, пересоздается каждый час.
@@ -18,10 +17,10 @@ Hello World!
  * https://devionity.com/ru/projects
  */
 
-$db_host = '46.101.16.227';
-$db_user = 'dv_sri9n4gu9muge';
-$db_password = 'r01ox87s4j9ta1qdm0uv';
-$db_name = 'dv_sri9n4gu9muge';
+$db_host = 'localhost';
+$db_user = 'root';
+$db_password = '';
+$db_name = 'symfony-09';
 
 include_once('db.class.php');
 
@@ -32,20 +31,17 @@ try {
 
     echo "<b>Books list: </b><br/><hr/>";
 
-    $books = $db->query("SELECT * FROM books");
+    $books = $db->query("SELECT * FROM item");
     foreach ($books as $book) {
-        echo "<b>{$book['title']}</b>  <a href='cart.php?action=add&id={$book['id']}'>Add to cart</a> <br>";
+        echo "<b>{$book['name']}</b>  <a href='cart.php?action=add&id={$book['id']}'>Add to cart</a> <br>";
     }
 
 } catch (Exception $e) {
     echo $e->getMessage() . ':(';
 }
+echo'<br/>';
+echo'<br/>';
+echo'<a href="cart.php">Show cart</a>';
 
-?>
-
-<br/>
-<br/>
-<a href='cart.php'>Show cart</a>
-
-</body>
-</html>
+echo'</body>';
+echo'</html>';
