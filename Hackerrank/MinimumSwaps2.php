@@ -9,37 +9,49 @@ $arr = array_map('intval', preg_split('/ /', $arr_temp, -1, PREG_SPLIT_NO_EMPTY)
 
 fclose($stdin);
 
-function minimumSwaps($arr) {
+// если числовой ряд будет состоять из 
+// непоследовательных чисел то такое решение не сработает
+function minimumSwapsOld($arr) {
     $length = count($arr);
     $countSwaps = 0;
 
     for($i = 0; $i < $length; $i++) {
-        $swapElementValue = $arr[$i];
-        $swapElementPosition = $i;
-        $j = $swapElementPosition + 1;
+        if ($arr[$i] == $i + 1) continue;
+        $tempValue = $arr[$i];
+        $arr[$i] = $arr[$tempValue - 1];
+        $arr[$tempValue - 1] = $tempValue;
+        $i--;
+        $countSwaps++;
+    }
 
-        for ($j; $j < $length; $j++) {
-            if ($arr[$j] < $swapElementValue) {
-                $swapElementValue  = $arr[$j];
-                $swapElementPosition = $j;
-            }
+    return $countSwaps;
+}
 
-            if ($i != 0 &&  $swapElementValue == ($arr[$i - 1] + 1)) {
+// для того что б сработало на ряде любых чисел
+function minimumSwaps($arr) {
+    $length = count($arr);
+    $countSwaps = 0;
+    $sortArr = $arr;
+    sort($sortArr);
+
+    for($i = 0; $i < $length; $i++) {
+        if ($arr[$i] == $sortArr[$i]) continue;
+        for ($j = $arr[$i] - 1; $j < $length; $j++) {
+            if ($arr[$i] == $sortArr[$j]) {
+                $tempValue = $arr[$i];
+                $arr[$i] = $arr[$j];
+                $arr[$j] = $tempValue;
+                $i--;
+                $countSwaps++;
                 break;
             }
-        }
-
-        if ($swapElementPosition != $i) {
-            $arr[$swapElementPosition] = $arr[$i];
-            $arr[$i] = $swapElementValue;
-            $countSwaps++;
-            echo $countSwaps . PHP_EOL;
         }
     }
 
     return $countSwaps;
 }
 
+echo minimumSwaps([4, 3, 1, 2,]) . PHP_EOL; // 3
 echo minimumSwaps([1, 2, 5, 3, 4,]) . PHP_EOL; // 2
 echo minimumSwaps([2, 1, 5, 3, 4,]) . PHP_EOL; // 3
 echo minimumSwaps([1, 2, 4, 5, 3, 8, 7, 6,]) . PHP_EOL; // 3
