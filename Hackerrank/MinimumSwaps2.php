@@ -27,7 +27,7 @@ function minimumSwapsOld($arr) {
     return $countSwaps;
 }
 
-// для того что б сработало на ряде любых чисел
+// для того что б сработало на ряде любых возростающих чисел
 function minimumSwaps($arr) {
     $length = count($arr);
     $countSwaps = 0;
