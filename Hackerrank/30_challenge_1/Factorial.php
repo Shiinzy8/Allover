@@ -2,8 +2,7 @@
 
 // Complete the factorial function below.
 function factorial($n) {
-    if ($n <= 1) return $n;
-    else return $n * factorial($n-1);
+    return ($n <= 1) ? $n : $n * factorial($n - 1);
 }
 
 $stdin = fopen("Factorial.txt", "r");
