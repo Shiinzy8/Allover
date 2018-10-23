@@ -1,8 +1,10 @@
 <?php
-$a = 'xacxzaa';
-$b = 'fxaazxacaaxzoecazxaxaz'; //4
+// $a = 'xacxzaa';
+// $b = 'fxaazxacaaxzoecazxaxaz'; //4
 // $a = 'abc';
 // $b = 'fabcbaf'; //3
+$a = 'xacxzaa';
+$b = 'fxaazxacaxazxacxacxzacxzaaxzzxaxacxzaacxzaaxzaaaaxzoecazxaxaz'; //12
 
 $lengthA = strlen($a);
 $lengthB = strlen($b);
@@ -12,6 +14,9 @@ $arr = str_split($a);
 $outArr = [];
 $inArr = [];
 
+include_once 'TimeMemoryMeter.php';
+
+timeMemoryMeterStart();
 for ($i = 0; $i < $lengthB; $i++) {
     // echo $b[$i] . PHP_EOL;
     // проверяем есть ли символ в строке
@@ -54,5 +59,6 @@ for ($i = 0; $i < $lengthB; $i++) {
         $count++;
     }
 }
+echo timeMemoryMeterFinish()  . PHP_EOL;
 
 echo $count . PHP_EOL;
