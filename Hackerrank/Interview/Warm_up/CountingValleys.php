@@ -7,7 +7,7 @@ function countingValleys($n, $s) {
     $countValley = 0;
 
     foreach ($arr as $step) {
-        echo $step . " w" . $valley . PHP_EOL;
+        // echo $step . " w" . $valley . PHP_EOL;
         if ($step == 'D') $valley--;
         if ($step == 'U') $valley++;
         if ($valley == 0 && $step == 'U') $countValley++;
