@@ -35,6 +35,7 @@ fscanf($stdin, "%[^\n]", $c_temp);
 $c = array_map('intval', preg_split('/ /', $c_temp, -1, PREG_SPLIT_NO_EMPTY));
 
 timeMemoryMeterStart();
+
 $result = jumpingOnClouds($c);
 
 echo timeMemoryMeterFinish()  . PHP_EOL;
