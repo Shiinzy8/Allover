@@ -28,7 +28,6 @@ function median($count, $arrElements) {
  * при одинаковом количестве повторений выбираем наименьшее
  */
 function mode($count, $arrElements) {
-    $i = $count;
     $arrElements = array_count_values($arrElements);
     arsort($arrElements);
     
