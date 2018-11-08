@@ -59,5 +59,3 @@ median($count, $arrElements);
 mode($count, $arrElements);
 
 fclose($stdin);
-
-
