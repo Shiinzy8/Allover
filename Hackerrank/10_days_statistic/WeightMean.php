@@ -16,6 +16,7 @@ function weightMean(array $arrElements,array $arrWeights) {
     echo number_format ($result/$weightSumm, 1) . PHP_EOL;
 }
 
+// $stdin = fopen("php://stdin", "r");
 $stdin = fopen("WeightMean.txt", "r");
 
 fscanf($stdin, "%d\n", $count);
