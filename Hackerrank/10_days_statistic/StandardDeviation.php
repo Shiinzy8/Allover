@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * standard deviation - average distance to the mean, среднее растоянии до среднего
+ * 
  * что вычислить надо взять модуль разници каждого числа и расстояния до середины списка
  * и поделить на количество элементов в списке
  * 
@@ -8,7 +10,7 @@
  * вычислить сумму всех таких значений и поделить их на количество элементов в списке
  * а потом из результата извелчь квадратный корень
  */
-function strandardDeviation(int $count, array $arrElements) {
+function standardDeviation(int $count, array $arrElements) {
     $average = number_format(array_sum($arrElements)/$count, 1, '.', '');
     $result = 0;
 
@@ -28,6 +30,6 @@ fscanf($stdin, "%[^\n]", $arrElements);
 
 $arrElements = explode(' ', $arrElements);
 
-strandardDeviation($count, $arrElements);
+standardDeviation($count, $arrElements);
 
 fclose($stdin);

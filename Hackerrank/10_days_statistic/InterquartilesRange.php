@@ -1,5 +1,6 @@
 <?php
 
+// межквартильный диапазон
 function interQuartlies($count, $arrElementsX, $arrElementsY) {
     $arrElements = [];
     foreach($arrElementsX as $key => $value) {
