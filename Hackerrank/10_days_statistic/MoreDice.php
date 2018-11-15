@@ -1,9 +1,14 @@
 <?php
-// In a single toss of 2 fair (evenly-weighted) six-sided dice, find the probability that their sum will be at most 9.
-// Кидая один раз 2 одинаковых 6-гранных кубика, найти вероятность того что сумма будет в меньше или равна 9
+
+// In a single toss of 2 fair (evenly-weighted) six-sided dice, 
+// find the probability that the values rolled by each die 
+// will be different and the two dice have a sum of 6.
+
+// Кидая один раз 2 одинаковых 6-гранных кубика, 
+// найти вероятность того что сумма будет равна 6 и значения на кубиках будут разные
 $firstDiceSides = 6;
 $secondDiceSides = 6;
-$max = 9;
+$max = 6;
 
 $allCombinationsCount = $firstDiceSides * $secondDiceSides;
 $allCombinations = [
@@ -49,7 +54,7 @@ $unsuitableCOmbinationsCount = 0;
 $unsuitableCOmbinations = [];
 
 foreach($allCombinations as $key => $combination) {
-    if ($combination[0] + $combination[1] > $max) {
+    if ($combination[0] + $combination[1] != $max || $combination[0] == $combination[1]) {
         $unsuitableCOmbinations[] = $combination;
     }
 }
