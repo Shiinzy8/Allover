@@ -9,7 +9,7 @@ class Rectangle {
  *  Write code that adds an 'area' method to the Rectangle class' prototype
  */
  Rectangle.prototype.area = function() {
-     return this.w * this.h;
+    return this.w * this.h;
  }
 
 /*
@@ -17,11 +17,9 @@ class Rectangle {
  */
 class Square extends Rectangle {
     constructor(w) {
-        this.w = w;
-        this.h = w;
+        super(w,w);
     }
 }
-
 
 if (JSON.stringify(Object.getOwnPropertyNames(Square.prototype)) === JSON.stringify([ 'constructor' ])) {
     const rec = new Rectangle(3, 4);
@@ -33,3 +31,6 @@ if (JSON.stringify(Object.getOwnPropertyNames(Square.prototype)) === JSON.string
     console.log(-1);
     console.log(-1);
 }
+
+// To run this script you need in console from this folder run command
+// node Inheritance.js < Inheritance.txt
