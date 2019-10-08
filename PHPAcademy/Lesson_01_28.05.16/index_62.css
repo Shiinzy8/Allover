@@ -1,0 +1,6 @@
+.current {
+    font-weight: bold;
+}
+.not_current {
+    font-weight: lighter;
+}
