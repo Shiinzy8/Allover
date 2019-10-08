@@ -1,0 +1,13 @@
+.div_1 {
+    float: left;
+    width: auto;
+    height: 100px;
+    background-color: aqua;
+}
+
+.div_2 {
+    float: right;
+    width: auto;
+    height: 100px;
+    background-color: blueviolet;
+}
