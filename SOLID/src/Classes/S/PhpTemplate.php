@@ -6,6 +6,6 @@ class PhpTemplate implements Template
 {
     function render($data)
     {
-        echo '<h2>'.$data.'</h2>';
+        echo '<h2>' . $data . '</h2>';
     }
 }

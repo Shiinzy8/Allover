@@ -2,7 +2,7 @@
 
 namespace App\S;
 
-interface Template 
+interface Template
 {
     function render($data);
 }

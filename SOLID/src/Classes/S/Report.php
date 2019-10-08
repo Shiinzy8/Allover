@@ -4,17 +4,20 @@
 namespace App\S;
 
 
-class Report 
+class Report
 {
-    public function getDoctor() {
+    public function getDoctor()
+    {
         return "Doctor";
     }
 
-    public function getPatient() {
+    public function getPatient()
+    {
         return "Patient";
     }
 
-    public function getData() {
+    public function getData()
+    {
         return "Data";
     }
 
@@ -25,8 +28,9 @@ class Report
     //     echo $this->getDoctor().'<br/>'.$this->getPatient().'<br/>'.$this->getData();
     // }
 
-    public function getAllData() {
-        return $this->getDoctor().'<br/>'.$this->getPatient().'<br/>'.$this->getData();
+    public function getAllData()
+    {
+        return $this->getDoctor() . '<br/>' . $this->getPatient() . '<br/>' . $this->getData();
     }
 
     // этот метод тоже нарушает принцип единой ответственности
