@@ -1,0 +1,43 @@
+As you may have already noticed, finding patterns in the possible ways events 
+can occur is very useful in helping us count the number of desirable events in our sample space.
+Two of the easiest methods for doing this are with permutations (when order matters) 
+and combinations (when order doesn't matter). 
+
+
+Permutations - перестановки (когда важен порядок)
+An ordered arrangement of r objects from a set, A, 
+of n objects (where 0 < r <= n) is called an r-element permutation of A. 
+You can also think of this as a permutation of A's elements taken r at a time.
+The number of r-element permutations of an n-object set is denoted by the following formula:
+
+nPr = n! / (n - r)!;  ! - факториал числа (5! = 5*4*3*2*1)
+
+Пример:
+    у нас есть последовательность чисел {1,2,3,4,5,6,7,8,9,10} = set A из описания выше, n =10 количество объектов в этом set
+    взять из нее любой кусок, например {2,3,4} r=3 длина этого куска, при чем r всегда должен быть больше 0 и меньше или равно n
+    
+    permutation of A's elements taken r at a time - перестановка r элементов A
+
+    Перестановка r элементов в наборе из n элементов
+   
+    nPr=10!/(10-3)! = 3628800/5040 = 720
+
+Note: We define 0! to be 1; otherwise, nPr would be n!/0 (when r = n). 
+
+
+Combinations - комбинации (порядок не имеет значения)
+An unordered arrangement of r objects from a set, A,
+of n objects (where r <= n) is called an r-element combination of A.
+You can also think of this as a combination of A's elements taken r at a time. 
+
+Because the only difference between permutations and combinations is that combinations are unordered, 
+we can easily find the number of r-element combinations by dividing out the permutations (r!):
+
+nCr = nPr / r! = n! / (r! * (n - r)!);
+
+When we talk about combinations, we're talking about the number 
+of subsets of size r that can be made from a set of size n. In fact, nCr is often referred to as "n choose r", 
+because it's counting the number of r-element combinations that can be chosen from a set of n elements. 
+In notation, nCr is typically written as (n r).
+
+Для предыдущих условий nCr = 3638800/ (6 * 540) = 120
