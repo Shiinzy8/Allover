@@ -1,19 +1,24 @@
-# Allover  
+# Code from allover  
 
-Code from allover
 - [Coursera](Coursera/README.md)
 - [FreeCodeCamp](freeCodeCamp/README.md)
-- [Hackerrank](Hackerrank/README.md)
+- [HackerRank](HackerRank/README.md)
 - [HTMLAcademy](HTMLAcademy/README.md)
+- [Interview](Interview/README.md)
+- [Interviews](Interviews/README.md)
 - [PHPAcademy](PHPAcademy/README.md)
 - [SOLID](SOLID/README.md)
-    
 
 # Also README.md syntax
 
+This is for titels
 # The largest heading
-## The second largest heading
-###### The smallest heading
+##
+###
+####
+#####
+###### The smallest heading  
+
 bold - **This is bold text**  
 italic - *This text is italicized*  
 strikethrough - ~~This was mistaken text~~  
@@ -29,7 +34,8 @@ git add
 git commit
 ```
 
-This site was built using [GitHub Pages](https://pages.github.com/).
+[GitHub Pages](https://pages.github.com/).  
+[GitHub Gists](https://gist.github.com/).  
 
 - George Washington
     - George Washington 1
@@ -52,5 +58,5 @@ This site was built using [GitHub Pages](https://pages.github.com/).
 - [ ] Second task
 - [ ] Third task
 
-@ (Mentioning people and teams)  
-@Shiinzy8 :+1: This PR looks great - it's ready to merge! :shipit:  
+Emoji are working too  
+:+1: This PR looks great - it's ready to merge! :shipit:  
