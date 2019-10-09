@@ -14,10 +14,12 @@ class Report implements IReport
 
     /**
      * Report constructor.
-     * @param $view
+     * @param View $view
      */
     public function __construct($view)
     {
+        // в конструктор тоже можно добавить тип интерфейс как аргумент
+        // тогда мы еще больше уменьшим зависимость от деталей
         $this->view = $view;
     }
 

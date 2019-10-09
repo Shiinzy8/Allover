@@ -8,7 +8,7 @@ namespace App\D;
  * Class DatabaseSave
  * @package App\O
  */
-class DatabaseSave implements Saver
+class DatabaseSave implements ISaver
 {
     private $mysqli, $host, $user, $pass, $db;
 
@@ -45,11 +45,12 @@ class DatabaseSave implements Saver
     }
 
     /**
+     * @param $data
      * @return mixed
      */
     public function save($data)
     {
         $this->connect();
-        $this->mysqli->query("INSERT INTO 'reports' (report) VALUES ('" . $data . "')" );
+        $this->mysqli->query("INSERT INTO 'reports' (report) VALUES ('" . $data . "')");
     }
 }

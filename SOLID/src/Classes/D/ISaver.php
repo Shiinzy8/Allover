@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\O;
+namespace App\D;
 
 
 /**
  * Interface Saver
  * @package App\O
  */
-interface Saver
+interface ISaver
 {
     /**
      * @param $data

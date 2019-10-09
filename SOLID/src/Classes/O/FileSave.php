@@ -6,7 +6,7 @@ namespace App\O;
  * Class FileSave
  * @package App\O
  */
-class FileSave implements Saver
+class FileSave implements ISaver
 {
     /**
      * @var

@@ -4,6 +4,10 @@
 namespace App\L;
 
 
+/**
+ * Class Rectangle
+ * @package App\L
+ */
 class Rectangle
 {
     protected $width, $height;
@@ -51,7 +55,11 @@ class Rectangle
         $this->height = $height;
     }
 
-    public function area() {
+    /**
+     * @return float|int
+     */
+    public function area()
+    {
         return $this->width * $this->height;
     }
 }

@@ -6,7 +6,8 @@ namespace App\L\Example;
 
 use Exception;
 
- /**
+
+/**
  * Class AbstractView
  * @package App\L\Example
  */
@@ -35,10 +36,10 @@ abstract class AbstractView
     {
         $template = TEMPLATE . '/templates' . DIRECTORY_SEPARATOR . $template;
 
+
         if (!file_exists($template)) {
             throw new Exception('Invalid template');
         }
-
         $this->_template = $template;
     }
 
@@ -58,7 +59,7 @@ abstract class AbstractView
         if ($this->_template !== null) {
             extract(['content' => $this->content]);
             ob_start(); // write all in buffer
-            include($this->_template); // include file of template
+            include($this->_template); // include file of template and execute it right now, $content variable we use from buffer
             return ob_get_clean(); // return everything from buffer
         }
     }

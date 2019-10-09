@@ -6,6 +6,10 @@ namespace App\L\Example;
 
 use Exception;
 
+/**
+ * Class PartialView
+ * @package App\L\Example
+ */
 class PartialView extends AbstractView
 {
 

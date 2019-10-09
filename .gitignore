@@ -1,2 +1,3 @@
 .idea/
-SOLID/vendor/
+/SOLID/vendor/
+/SOLID/file.txt

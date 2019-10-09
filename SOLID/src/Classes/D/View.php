@@ -4,6 +4,10 @@
 namespace App\D;
 
 
+/**
+ * Class View
+ * @package App\D
+ */
 class View
 {
     /**
@@ -14,6 +18,6 @@ class View
      */
     public function getAllData($doctor, $patient, $data)
     {
-        return $doctor . '<br/>' . $patient . '<br/>' . $data;
+        return $doctor . '_D' . PHP_EOL . $patient . '_D' . PHP_EOL . $data . '_D' . PHP_EOL;
     }
 }

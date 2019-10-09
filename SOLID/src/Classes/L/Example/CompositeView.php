@@ -4,10 +4,15 @@
 namespace App\L\Example;
 
 
+/**
+ * Class CompositeView
+ * @package App\L\Example
+ */
 class CompositeView extends AbstractView
 {
 
     protected $_views = array();
+
     /**
      * @param AbstractView $view
      * @return mixed

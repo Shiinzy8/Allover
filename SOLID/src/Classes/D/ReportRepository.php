@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\D;
+
 
 /**
  * Class ReportRepository
- * @package App\O
+ * @package App\D
  */
 class ReportRepository
 {
@@ -12,10 +14,10 @@ class ReportRepository
 
     /**
      * ReportRepository constructor.
-     * @param Report $report
-     * @param Saver $saver
+     * @param IReport $report
+     * @param ISaver $saver
      */
-    public function __construct(IReport $report, Saver $saver)
+    public function __construct(IReport $report, ISaver $saver)
     {
         $this->report = $report;
         $this->saver = $saver;

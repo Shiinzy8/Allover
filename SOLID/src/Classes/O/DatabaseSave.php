@@ -8,7 +8,7 @@ namespace App\O;
  * Class DatabaseSave
  * @package App\O
  */
-class DatabaseSave implements Saver
+class DatabaseSave implements ISaver
 {
     private $mysqli, $host, $user, $pass, $db;
 
@@ -38,13 +38,14 @@ class DatabaseSave implements Saver
         if ($this->mysqli->connect_error) {
             die(
                 'Connection error (' .
-                $this->mysqli->connect_errno . ')' .
-                $this->mysqli->connect_error
+                $this->mysqli->connect_errno . ') ' . // connect_errno - Возвращает код ошибки последней попытки соединения
+                $this->mysqli->connect_error // connect_error -  Возвращает описание последней ошибки подключения
             );
         }
     }
 
     /**
+     * @param $data
      * @return mixed
      */
     public function save($data)
