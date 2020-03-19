@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class QueueStaticTest extends TestCase 
 {
     /** @var Queue */
-    protected static$queue;
+    protected static $queue;
 
     protected function setUp(): void 
     { 
