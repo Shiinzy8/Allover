@@ -22,4 +22,25 @@ class UserTest extends TestCase
 
         $this->assertEquals("", $user->getFullName());
     }
+
+    public function userHasFirstName() 
+    {
+        $user = new User;
+
+        $user->first_name = "First";
+
+        $this->assertEquals("First", $user->getFullName());
+    }
+
+    /**
+     * @test
+     */
+    public function user_has_first_name() 
+    {
+        $user = new User;
+
+        $user->first_name = "First";
+
+        $this->assertEquals("First", $user->getFullName());
+    }
 }
