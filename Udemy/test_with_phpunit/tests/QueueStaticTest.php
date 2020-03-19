@@ -98,4 +98,17 @@ class QueueStaticTest extends TestCase
 
         $this->assertEquals('first', static::$queue->pop());
     }
+
+    public function testMaxNumberOfItemsCanBeAdded() 
+    {
+        for ($i = 0; $i < Queue::MAX_ITEMS; $i++) {
+            static::$queue->push($i);
+        }
+
+        $this->expectException(QueueException::class);
+
+        static::$queue->push(6);
+        
+        $this->assertEquals(Queue::MAX_ITEMS, static::$queue->getCount());
+    }
 }
