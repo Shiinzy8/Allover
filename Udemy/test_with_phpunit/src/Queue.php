@@ -31,7 +31,8 @@ class Queue
      */
     public function pop()
     {
-        return array_pop($this->items);
+        // return array_pop($this->items); // it is a bag, we need to return first item
+        return array_shift($this->items);
     }
 
     /**
