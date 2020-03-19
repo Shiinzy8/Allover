@@ -11,13 +11,21 @@ use PHPUnit\Framework\TestCase;
  */
 class ExampleTest extends TestCase
 {
-    public function testSuccess() 
+    /**
+     * names of methods must begins from "test"
+     */
+    public function testAddingTwoPlusTwoResultsInFourSuccess() 
     {
         $this->assertEquals(4, 2+2);
     }
 
-    public function testFailure()
+    public function testAddingTwoPlusTwoResultsInFourFailure()
     {
         $this->assertEquals(5, 2+2);
+    }
+
+    public function testAddingTwoPlusTwoResultsInFiveSuccess() 
+    {
+        $this->assertNotEquals(5, 2+2);
     }
 }
