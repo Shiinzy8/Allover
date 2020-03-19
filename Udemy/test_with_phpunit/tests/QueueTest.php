@@ -4,13 +4,34 @@ use PHPUnit\Framework\TestCase;
 
 class QueueTest extends TestCase 
 {
-    public function testNewQueueIsEmpty()
+    /** @var Queue */
+    protected $queue;
+
+    /**
+     * PHPUnit runs it before each method
+     */
+    protected function setUp(): void
     {
-        $queue = new Queue;
+        $this->queue = new Queue;   
+    }
 
-        $this->assertEquals(0, $queue->getCount());
+    /** 
+     * PHPUnit runs it after each method
+     */
+    protected function tearDown(): void
+    {
+        unset($this->queue);
+    }
 
-        return $queue; // we added return to use @depends annotation in other functions
+    public function testNewQueueIsEmpty(): Queue
+    {
+        // comment both after we created setUp method
+        // $queue = new Queue;
+        // $this->assertEquals(0, queue->getCount());
+
+        $this->assertEquals(0, $this->queue->getCount());
+
+        return $this->queue; // we added return to use @depends annotation in other functions
     }
 
     /**
@@ -43,13 +64,14 @@ class QueueTest extends TestCase
 
     public function testCountIsWorkingProperly() 
     {
-        $queue = new Queue;
+        // commnt after we creaetd setUp method
+        // $queue = new Queue;
 
-        $queue->push('green');
-        $queue->push('yellow');
-        $queue->push('blue');
+        $this->queue->push('green');
+        $this->queue->push('yellow');
+        $this->queue->push('blue');
 
-        $this->assertEquals(3, $queue->getCount());
+        $this->assertEquals(3, $this->queue->getCount());
     }
 
     public function testAnItemIsAddedToTheQueue() 
