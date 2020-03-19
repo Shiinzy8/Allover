@@ -4,9 +4,13 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase 
 {
+    /**
+     * this method now is a felure becase we add autoloading for composer
+     * and move file User.php
+     */
     public function testReturnsFullName() 
     {
-        require 'User.php';
+        // require 'User.php'; // we commet this file because we added autoload in composer
 
         $user = new User;
         
