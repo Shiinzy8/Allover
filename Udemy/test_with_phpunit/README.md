@@ -12,7 +12,13 @@ For our example:
     phpunit tests/ExampleTest
     phpunit tests/
     phpunit tests/ --filter=testReturnsFullName
+    phpunit -h = to show help for phpunit
+    phpunit --color = add colors to output
+    phpunit --verbose = add more information to output
 
 PHPUnit will run only methonds which names are begin with "test" word
 but there are alternative for this, in annotation to methods you should add "@test"
 
+For configuration PHPUnit we can use phpunit.xml file
+    we can add options to run by default
+    we can add default folder for test or even specific name suppix
