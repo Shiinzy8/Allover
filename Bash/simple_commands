@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+read -p "Your name? " name
+
+if [[ $name = $USER ]]; then
+    echo "hello, me."
+else
+    echo "Hello, $name."
+fi
+
+if ! rm hello.txt; then echo "Couldn't delete hello.txt." >&2; exit 1; fi
+rm hello.txt || { echo "Couldn't 1 delete hello.txt." >&2; exit 1; }
