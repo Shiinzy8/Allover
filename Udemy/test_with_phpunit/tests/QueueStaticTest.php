@@ -2,49 +2,38 @@
 
 use PHPUnit\Framework\TestCase;
 
-class QueueTest extends TestCase 
+class QueueStaticTest extends TestCase 
 {
     /** @var Queue */
-    protected $queue;
+    protected static$queue;
+
+    protected function setUp(): void 
+    { 
+        static::$queue->clear();
+    }
+    protected function tearDown(): void { }
 
     /**
-     * PHPUnit runs it before each method
-     */
-    protected function setUp(): void
-    {
-        $this->queue = new Queue;   
-    }
-
-    /** 
-     * PHPUnit runs it after each method
-     */
-    protected function tearDown(): void
-    {
-        unset($this->queue);
-    }
-
-    /**
-     * Method is runs once  
+     * Method runs once before all other methods
      */
     public static function setUpBeforeClass(): void
     {
-        
+        static::$queue = new Queue;
     }
 
+    /**
+     * Method runs once after all other methods
+     */
     public static function tearDownAfterClass(): void
     {
-        
+        static::$queue = null;   
     }
 
     public function testNewQueueIsEmpty(): Queue
     {
-        // comment both after we created setUp method
-        // $queue = new Queue;
-        // $this->assertEquals(0, queue->getCount());
+        $this->assertEquals(0, static::$queue->getCount());
 
-        $this->assertEquals(0, $this->queue->getCount());
-
-        return $this->queue; // we added return to use @depends annotation in other functions
+        return static::$queue; // we added return to use @depends annotation in other functions
     }
 
     /**
@@ -80,11 +69,11 @@ class QueueTest extends TestCase
         // commnt after we creaetd setUp method
         // $queue = new Queue;
 
-        $this->queue->push('green');
-        $this->queue->push('yellow');
-        $this->queue->push('blue');
+        static::$queue->push('green');
+        static::$queue->push('yellow');
+        static::$queue->push('blue');
 
-        $this->assertEquals(3, $this->queue->getCount());
+        $this->assertEquals(3, static::$queue->getCount());
     }
 
     public function testAnItemIsAddedToTheQueue() 
@@ -104,9 +93,9 @@ class QueueTest extends TestCase
 
     public function testAnItemIsRemovedFromTheFrontOfTheQueue() 
     {
-        $this->queue->push('first');
-        $this->queue->push('second');
+        static::$queue->push('first');
+        static::$queue->push('second');
 
-        $this->assertEquals('first', $this->queue->pop());
+        $this->assertEquals('first', static::$queue->pop());
     }
 }

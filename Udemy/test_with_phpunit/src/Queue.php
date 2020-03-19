@@ -19,7 +19,7 @@ class Queue
      *
      * @param mixed $item The item
      */
-    public function push($item)
+    public function push($item): void
     {
         $this->items[] = $item;
     }
@@ -40,8 +40,16 @@ class Queue
      *
      * @return integer The number of items
      */
-    public function getCount()
+    public function getCount(): int
     {
         return count($this->items);
+    }
+
+    /**
+     * Clear the array
+     */
+    public function clear(): void 
+    {
+        $this->items = [];
     }
 }
