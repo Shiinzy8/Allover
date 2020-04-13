@@ -18,6 +18,6 @@ class MockTest extends TestCase
 
         // var_dump($result);
 
-        $this->assertEquals($result, true);
+        $this->assertEquals(true, $result);
     }
 }
