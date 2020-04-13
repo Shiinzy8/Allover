@@ -23,22 +23,6 @@ class QueueTest extends TestCase
         unset($this->queue);
     }
 
-    /**
-     * Method is runs once before first test of the class
-     */
-    public static function setUpBeforeClass(): void
-    {
-        static::$queue = new Queue();   
-    }
-
-    /**
-     * Methos is runs once after last test of the class
-     */
-    public static function tearDownAfterClass(): void
-    {
-        static::$queue = null;
-    }
-
     public function testNewQueueIsEmpty(): Queue
     {
         // comment both after we created setUp method
