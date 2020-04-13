@@ -7,8 +7,10 @@ class NewUserTest extends TestCase
     public function testNotifyReturnsTrue()
     {
         $newUser = new NewUser('develop@gmail.com');
-        $newUser->notify('Wow');
+        // $mailer = new NewMailer;
+        $mailer = $this->createMock(NewMailer::class);
+        $newUser->setMailer($mailer);
         
-        $this->assertTrue(true);
+        $this->assertTrue($newUser->notify('Wow'));
     }
 }

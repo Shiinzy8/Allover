@@ -31,17 +31,17 @@ class NewUser
         $this->email = $email;
     }
 
-    // /**
-    //  * Mailer setter
-    //  *
-    //  * @param NewMailer $mailer A Mailer object
-    //  *
-    //  * @return void
-    //  */
-    // public function setMailer(NewMailer $mailer) 
-    // {
-    //     $this->mailer = $mailer;        
-    // }
+    /**
+     * Mailer setter
+     *
+     * @param NewMailer $mailer A Mailer object
+     *
+     * @return void
+     */
+    public function setMailer(NewMailer $mailer) 
+    {
+        $this->mailer = $mailer;        
+    }
     
     /**
      * Send the user a message
@@ -52,6 +52,6 @@ class NewUser
      */
     public function notify(string $message)
     {
-        return NewMailer::send($this->email, $message);
+        return $this->mailer::send($this->email, $message);
     }
 }
