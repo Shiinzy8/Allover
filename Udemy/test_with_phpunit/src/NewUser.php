@@ -19,6 +19,8 @@ class NewUser
      */
     protected $mailer;
 
+    protected $new_mailer_callable;
+
     /**
      * Constructor
      *
@@ -42,6 +44,11 @@ class NewUser
     {
         $this->mailer = $mailer;        
     }
+
+    public function setNewMailerCallable(callable $mailer)
+    {
+        $this->new_mailer_callable = $mailer;
+    }
     
     // bad practic to test this
     // first varian is to change of send method
@@ -57,6 +64,12 @@ class NewUser
     {
         // return $this->mailer::send($this->email, $message);
 
-        return $this->mailer->sendNoStatic($this->email, $message);
+        // return $this->mailer->sendNoStatic($this->email, $message);
+
+        // second solution to create a callable
+        // this is equvalemt to static call
+        // return call_user_func([NewMailer::class, 'send'], $this->email, $message);
+        // after addit callable property we rewrite this method
+        return call_user_func($this->new_mailer_callable, $this->email, $message);
     }
 }
