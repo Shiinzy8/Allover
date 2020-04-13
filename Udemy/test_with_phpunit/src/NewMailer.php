@@ -7,7 +7,6 @@
  */
 class NewMailer
 {
-
     /**
      * Send a message
      *
