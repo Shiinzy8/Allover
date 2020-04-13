@@ -21,10 +21,22 @@ class ItemTest extends TestCase
 
     public function testTokenIsAString()
     {
-        $item = new ItemChild;
-        // private methods can't be rewrited
-        // and in general private methods shouldn't be tested
+        // $item = new ItemChild;
+        // // private methods can't be rewrited
+        // // and in general private methods shouldn't be tested
 
-        $this->assertIsString($item->getToken());
+        // $this->assertIsString($item->getToken());
+
+        // test private method with reflection
+        $item = new Item;
+
+        $reflectior = new ReflectionClass(Item::class);
+
+        $method = $reflectior->getMethod('getToken');
+        $method->setAccessible('public');
+
+        $result = $method->invoke($item);
+
+        $this->assertIsString($result);
     }
 }
