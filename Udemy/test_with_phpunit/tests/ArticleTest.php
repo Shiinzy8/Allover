@@ -4,32 +4,37 @@ use PHPUnit\Framework\TestCase;
 
 class ArticleTest extends TestCase
 {
-    protected article;
+    protected $article;
 
     protected function setUp(): void
     {
-        $article = new App\Article;
+        $this->article = new App\Article;
     }
 
     public function testTitleIsEmptyByDefault() 
     {
-        $article = new App\Article;
-
-        $this->assertEmpty($article->title);
+        $this->assertEmpty($this->article->title);
     }
 
     public function testSlugIsEmptyWithNoTitle()
     {
-        $article = new App\Article;
-
         // this method doing boolean comparesson
         // $this->assertEquals($article->getSlug(), "");
 
-        $this->assertSame($article->getSlug(), "");
+        $this->assertSame($this->article->getSlug(), "");
     }
 
     public function testSlugHasSpacesReplaceByUnderscores()
     {
+        $this->article->title = "An example article";
 
+        $this->assertEquals($this->article->getSlug(), "An_example_article");
+    }
+
+    public function testSlugHasWhitespaceReplacedBySingleUnderscore()
+    {
+        $this->article->title = "An       example     \n        article";
+
+        $this->assertEquals($this->article->getSlug(), "An_example_article");
     }
 }
