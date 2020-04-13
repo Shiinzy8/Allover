@@ -102,8 +102,6 @@ class UserTest extends TestCase
                                // stub - means that those method will return null
             ->getMock();
 
-
-
         $user->setMailer($mail_mock);
 
         $this->expectException(Exception::class);
