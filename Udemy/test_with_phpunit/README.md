@@ -25,3 +25,6 @@ but there are alternative for this, in annotation to methods you should add "@te
 For configuration PHPUnit we can use phpunit.xml file
     we can add options to run by default
     we can add default folder for test or even specific name suppix
+
+We also goint to use stand alone component mockery
+    composer require mockery/mockery --dev
