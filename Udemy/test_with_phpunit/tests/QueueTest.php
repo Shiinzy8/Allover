@@ -12,7 +12,7 @@ class QueueTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->queue = new Queue;   
+        $this->queue = new Queue; // this is fixture
     }
 
     /** 
@@ -24,16 +24,19 @@ class QueueTest extends TestCase
     }
 
     /**
-     * Method is runs once  
+     * Method is runs once before first test of the class
      */
     public static function setUpBeforeClass(): void
     {
-        
+        static::$queue = new Queue();   
     }
 
+    /**
+     * Methos is runs once after last test of the class
+     */
     public static function tearDownAfterClass(): void
     {
-        
+        static::$queue = null;
     }
 
     public function testNewQueueIsEmpty(): Queue
