@@ -43,6 +43,9 @@ class NewUser
         $this->mailer = $mailer;        
     }
     
+    // bad practic to test this
+    // first varian is to change of send method
+    // simply remove static
     /**
      * Send the user a message
      *
@@ -52,6 +55,8 @@ class NewUser
      */
     public function notify(string $message)
     {
-        return $this->mailer::send($this->email, $message);
+        // return $this->mailer::send($this->email, $message);
+
+        return $this->mailer->sendNoStatic($this->email, $message);
     }
 }
