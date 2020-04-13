@@ -73,13 +73,41 @@ class UserTest extends TestCase
         // $mock->method('nofity')->willReturn(true);
 
         // $user->setMailer(new Mailer());
+
         $user->email = 'develop@unit.com';
 
         $mockMailer = $this->createMock(Mailer::class);
-        $mockMailer->method('sendMessage')->willReturn(true);
+        $mockMailer->expects($this->once()) // expects that this method will be called once
+            // ->expects($this->never)
+            ->method('sendMessage')
+            ->with($this->equalTo('develop@unit.com'), $this->equalTo('Hello'))
+            ->willReturn(true);
 
         $user->setMailer($mockMailer);
 
         $this->assertTrue($user->notify('Hello'));
+    }
+
+    public function testCannotNotifyUserWithNoEmail() 
+    {
+        $user = new User();
+
+        // $mail_mock = $this->createMock(Mailer::class);
+
+        // but here we simply rewrite the method, but we want to use real one
+        // $mail_mock->method('sendMessage')->will($this->throwException(new Exception()));
+        
+        $mail_mock = $this->getMockBuilder(Mailer::class)
+            ->setMethods(null) // in this method we need to pass names of method of original class which we want to stub
+                               // stub - means that those method will return null
+            ->getMock();
+
+
+
+        $user->setMailer($mail_mock);
+
+        $this->expectException(Exception::class);
+
+        $user->notify('Hello');
     }
 }
