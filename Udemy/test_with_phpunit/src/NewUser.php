@@ -70,6 +70,9 @@ class NewUser
         // this is equvalemt to static call
         // return call_user_func([NewMailer::class, 'send'], $this->email, $message);
         // after addit callable property we rewrite this method
-        return call_user_func($this->new_mailer_callable, $this->email, $message);
+        // return call_user_func($this->new_mailer_callable, $this->email, $message);
+
+        // third way to use Mockery
+        return NewMailer::send($this->email, $message);
     }
 }
