@@ -1,0 +1,9 @@
+framework:
+    workflows:
+        your_state_machine_name_here:
+            type: state_machine
+
+            # and / or
+
+            your_workflow_name_here:
+                type: workflow # by default
