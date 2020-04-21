@@ -1,9 +1,31 @@
 framework:
     workflows:
-        your_state_machine_name_here:
+        task:
             type: state_machine
-
-            # and / or
-
-            your_workflow_name_here:
-                type: workflow # by default
+            supports:
+                - Entity\Task
+            places:
+                - backlog
+                - in_progress
+                - done
+            transitions:
+                processing:
+                    from: backlog
+                    to: in_progress
+                done:
+                    from: in_progress
+                    to: done
+        article:
+            type: workflow
+            supports:
+                - Entity\Article
+            places:
+                - draft
+                - wait_for_journalist
+                - wait_for_spellchecker
+            transitions:
+                request_review:
+                    from: draft
+                    to:
+                        - wait_for_journalist
+                        - wait_for_spellchecker

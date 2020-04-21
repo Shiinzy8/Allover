@@ -4,9 +4,29 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                {% include ('::flash-messages.html.twig') %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div><!-- /.container -->
+
+    {% block javascripts %}{% endblock %}
     </body>
 </html>
