@@ -26,9 +26,9 @@ class SimpleStateMachineExample
     /**
      * @var string
      *
-     * @ORM\Column(name="marking", type="string", length=255)
+     * @ORM\Column(name="status", type="string", length=255)
      */
-    private $marking;
+    private $status;
 
     /**
      * Get id
@@ -43,20 +43,48 @@ class SimpleStateMachineExample
     /**
      * @return string
      */
-    public function getMarking()
+    public function getStatus()
     {
-        return $this->marking;
+        return $this->status;
     }
 
     /**
-     * @param string $marking
+     * @param string $status
      *
      * @return SimpleStateMachineExample
      */
-    public function setMarking($marking)
+    public function setStatus($status)
     {
-        $this->marking = $marking;
+        $this->status = $status;
 
         return $this;
     }
+
+//    // we comment it because in workflow.yaml we add marking_store option and new field to watch on
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="marking", type="string", length=255)
+//     */
+//    private $marking;
+//
+//    /**
+//     * @return string
+//     */
+//    public function getMarking()
+//    {
+//        return $this->marking;
+//    }
+//
+//    /**
+//     * @param string $marking
+//     *
+//     * @return SimpleStateMachineExample
+//     */
+//    public function setMarking($marking)
+//    {
+//        $this->marking = $marking;
+//
+//        return $this;
+//    }
 }

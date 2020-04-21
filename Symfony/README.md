@@ -13,6 +13,20 @@
     symfony server:start
 7. check for security problems
     symfony check:security
+8. also installed drivers for postgresql
+    apt-get intall php-pgsql
+
+    now we can run doctrine cli commands such as
+        php bin/console doctrine:database:create
+        php bin/console doctrine:schema:update --force
+
+    php bin/console config:dump-reference framework
+
+    php bin/console workflow:dump name_of_a_workflow > out.dot
+
+9. installed gravzip
+    sudo apt-get install graphviz    
+
 
 
     connect ot postgesql docker-compose run database bash

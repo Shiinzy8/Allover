@@ -1,6 +1,3 @@
-parameters:
-
-
 framework:
     # lots of
     # other symfony framework
@@ -12,10 +9,17 @@ framework:
             supports:
                 - App\Entity\SimpleStateMachineExample
             type: 'state_machine'
+
             places:
                 - a
                 - b
                 - c
+            # initial place for entity, workflow will start from place b
+            initial_marking: b
+            # this section is used to change marketing to status
+            marking_store:
+                type: 'method'
+                property: 'status'
             transitions:
                 start:
                     from: a

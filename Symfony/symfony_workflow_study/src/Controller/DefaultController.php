@@ -6,7 +6,7 @@ use App\Entity\SimpleStateMachineExample;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Workflow\Exception\LogicException;
+//use Symfony\Component\Workflow\Exception\LogicException;
 use Symfony\Component\Workflow\StateMachine;
 
 /**
@@ -15,22 +15,13 @@ use Symfony\Component\Workflow\StateMachine;
  */
 class DefaultController extends AbstractController
 {
-//    private $stateMachine;
-//
-//    public function __construct(StateMachine $stateMachine)
-//    {
-//        $this->stateMachine = $stateMachine;
-//    }
-
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request, StateMachine $stateMachine)
     {
         $entity = new SimpleStateMachineExample();
-        $one = $stateMachine;
-
-//        var_dump($one);die;
+//        $entity->setMarking('b'); // change place by hardcode
 
         $transitions['can_start'] = $stateMachine->can($entity, 'start');
         $transitions['can_end'] = $stateMachine->can($entity, 'end');
