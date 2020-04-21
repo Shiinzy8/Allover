@@ -2,7 +2,7 @@
 
 // /src/Entity/Task.php
 
-namespace src\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 /**

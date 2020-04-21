@@ -1,31 +1,25 @@
+parameters:
+
+
 framework:
+    # lots of
+    # other symfony framework
+    # config here
     workflows:
-        task:
-            type: state_machine
+        # type by default always workflow
+        # example of access $stateMachine = $this->get('state_machine.simple_state_machine_example');
+        simple_state_machine_example: # this definition in used for access in whole project
             supports:
-                - Entity\Task
+                - App\Entity\SimpleStateMachineExample
+            type: 'state_machine'
             places:
-                - backlog
-                - in_progress
-                - done
+                - a
+                - b
+                - c
             transitions:
-                processing:
-                    from: backlog
-                    to: in_progress
-                done:
-                    from: in_progress
-                    to: done
-        article:
-            type: workflow
-            supports:
-                - Entity\Article
-            places:
-                - draft
-                - wait_for_journalist
-                - wait_for_spellchecker
-            transitions:
-                request_review:
-                    from: draft
-                    to:
-                        - wait_for_journalist
-                        - wait_for_spellchecker
+                start:
+                    from: a
+                    to: b
+                end:
+                    from: b
+                    to: c
