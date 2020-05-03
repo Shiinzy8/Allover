@@ -1,3 +1,5 @@
+# For all symfony projects #
+
 1. install symfony cli
     wget https://get.symfony.com/chi/installer -O - | bash
 2. check requirements
@@ -25,7 +27,10 @@
     php bin/console workflow:dump name_of_a_workflow > out.dot
 
 9. installed gravzip
-    sudo apt-get install graphviz    
+    sudo apt-get install graphviz
+
+    To work with migrations:
+        If we create entity and want generate migrations from it - php bin/console make:migration 
 
 
 

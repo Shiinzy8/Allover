@@ -8,17 +8,26 @@
 - [Interview](Interview/README.md)
 - [Interviews](Interviews/README.md)
 - [PHPAcademy](PHPAcademy/README.md)
+- [Symfony](Symfony/README.md)
 - [SOLID](SOLID/README.md)
 
-# Also README.md syntax
+## Also some .md syntax (for more syntax go to [RULES](RULES.md))
 
 This is for titels
+
+```markdown
 # The largest heading
+
 ##
+
 ###
+
 ####
+
 #####
-###### The smallest heading  
+
+###### The smallest heading
+```
 
 bold - **This is bold text**  
 italic - *This text is italicized*  
@@ -29,7 +38,8 @@ all bold and italic - ***All this text is important***
 > Quoting text  
 
 Some basic Git commands are:
-```
+
+```bash
 git status
 git add
 git commit
@@ -39,14 +49,13 @@ git commit
 [GitHub Gists](https://gist.github.com/).  
 
 - George Washington
-    - George Washington 1
-        - George Washington 2
+  - George Washington 1
+    - George Washington 2
 - John Adams
     1. James Madison
     2. James Monroe
 - Thomas Jefferson
 
- 
 1. James Madison  
     1.1. James Madison 1
 2. James Monroe  
@@ -54,10 +63,10 @@ git commit
 3. John Quincy Adams
     - First nested list item
         - Second nested list item
-    
+
 - [x] Finish task
 - [ ] Second task
 - [ ] Third task
 
 Emoji are working too  
-:+1: This PR looks great - it's ready to merge! :shipit:  
+:+1: This PR looks great - it's ready to merge! :shipit:

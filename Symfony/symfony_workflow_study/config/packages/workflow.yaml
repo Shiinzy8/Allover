@@ -9,7 +9,6 @@ framework:
             supports:
                 - App\Entity\SimpleStateMachineExample
             type: 'state_machine'
-
             places:
                 - a
                 - b
@@ -27,3 +26,14 @@ framework:
                 end:
                     from: b
                     to: c
+        # type by default is workflow, it's mean that entity can be in tow different states at the same time
+        customer_singup:
+            supports: App\Entity\Customer
+            places:
+                - prospect
+                - free_customer
+            initial_marking: prospect
+            transitions:
+                sing_up:
+                    from: prospect
+                    to: free_customer
