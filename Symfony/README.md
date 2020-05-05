@@ -36,3 +36,14 @@
 
     connect ot postgesql docker-compose run database bash
     connect to db  psql --host=database --username=admin_user --dbname=symfony_workflow_db
+
+    Second course in this study https://symfonycasts.com/screencast/symfony-doctrine/saving-entities
+
+
+alias symfony="/home/user/.symfony/bin/symfony"
+
+
+    command for this course
+        bin/console make:entity
+        bin/console make:migration
+        bin/console doctrine:query:sql 'acual query'
