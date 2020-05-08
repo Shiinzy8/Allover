@@ -5,8 +5,6 @@ as well as an examples of documents that break the rule and corrected
 versions of the examples. Any rule whose heading is ~~struck through~~ is
 deprecated, but still provided for backward-compatibility.
 
-<a name="md001"></a>
-
 ## MD001 - Heading levels should only increment by one level at a time
 
 Tags: headings, headers
@@ -45,8 +43,6 @@ Rationale: Headings represent the structure of a document and can be confusing
 when skipped - especially for accessibility scenarios. More information:
 <https://www.w3.org/WAI/tutorials/page-structure/headings/>.
 
-<a name="md002"></a>
-
 ## ~~MD002 - First heading should be a top level heading~~
 
 Tags: headings, headers
@@ -80,8 +76,6 @@ cases where an h1 is added externally.
 
 Rationale: The top level heading often acts as the title of a document. More
 information: <https://cirosantilli.com/markdown-style-guide#top-level-header>.
-
-<a name="md003"></a>
 
 ## MD003 - Heading style
 
@@ -131,8 +125,6 @@ that the usage be consistent within the document.
 
 Rationale: Consistent formatting makes it easier to understand a document.
 
-<a name="md004"></a>
-
 ## MD004 - Unordered list style
 
 Tags: bullet, ul
@@ -177,8 +169,6 @@ indent uses asterisk, the middle indent uses plus, and the inner-most indent use
 ```
 
 Rationale: Consistent formatting makes it easier to understand a document.
-
-<a name="md005"></a>
 
 ## MD005 - Inconsistent indentation for list items at the same level
 
@@ -232,8 +222,6 @@ the same ending column:
 
 Rationale: Violations of this rule can lead to improperly rendered content.
 
-<a name="md006"></a>
-
 ## ~~MD006 - Consider starting bulleted lists at the beginning of the line~~
 
 Tags: bullet, ul, indentation
@@ -277,8 +265,6 @@ or the tab key is used to indent. Starting a list 1 space in means that the
 indent of the first nested list is less than the indent of the second level (3
 characters if you use 4 space tabs, or 1 character if you use 2 space tabs).
 
-<a name="md007"></a>
-
 ## MD007 - Unordered list indentation
 
 Tags: bullet, ul, indentation
@@ -320,8 +306,6 @@ issue for multi-markdown parsers, which require a 4-space indents. More informat
 <https://cirosantilli.com/markdown-style-guide#indentation-of-content-inside-lists>
 and <http://support.markedapp.com/discussions/problems/21-sub-lists-not-indenting>.
 
-<a name="md009"></a>
-
 ## MD009 - Trailing spaces
 
 Tags: whitespace
@@ -362,8 +346,6 @@ to allow this (even when `strict` is `true`):
 Rationale: Except when being used to create a line break, trailing whitespace
 has no purpose and does not affect the rendering of content.
 
-<a name="md010"></a>
-
 ## MD010 - Hard tabs
 
 Tags: whitespace, hard_tab
@@ -381,7 +363,7 @@ Example:
 ```markdown
 Some text
 
-	* hard tab character used to indent the list item
+  * hard tab character used to indent the list item
 ```
 
 Corrected example:
@@ -398,8 +380,6 @@ handling of tabs by tools is often inconsistent (ex: using 4 vs. 8 spaces).
 
 Rationale: Hard tabs are often rendered inconsistently by different editors and
 can be harder to work with than spaces.
-
-<a name="md011"></a>
 
 ## MD011 - Reversed link syntax
 
@@ -428,8 +408,6 @@ For (example)[^1]
 ```
 
 Rationale: Reversed links are not rendered as usable links.
-
-<a name="md012"></a>
 
 ## MD012 - Multiple consecutive blank lines
 
@@ -465,8 +443,6 @@ consecutive blank lines.
 
 Rationale: Except in a code block, blank lines serve no purpose and do not
 affect the rendering of content.
-
-<a name="md013"></a>
 
 ## MD013 - Line length
 
@@ -512,8 +488,6 @@ rules. Still, some languages do not lend themselves to short lines.
 
 Rationale: Extremely long lines can be difficult to work with in some editors.
 More information: <https://cirosantilli.com/markdown-style-guide#line-wrapping>.
-
-<a name="md014"></a>
 
 ## MD014 - Dollar signs used before commands without showing output
 
@@ -564,8 +538,6 @@ are omitted when they are not needed. See
 <https://cirosantilli.com/markdown-style-guide#dollar-signs-in-shell-code>
 for more information.
 
-<a name="md018"></a>
-
 ## MD018 - No space after hash on atx style heading
 
 Tags: headings, headers, atx, spaces
@@ -591,8 +563,6 @@ space:
 ```
 
 Rationale: Violations of this rule can lead to improperly rendered content.
-
-<a name="md019"></a>
 
 ## MD019 - Multiple spaces after hash on atx style heading
 
@@ -621,8 +591,6 @@ space:
 Rationale: Extra space has no purpose and does not affect the rendering of
 content.
 
-<a name="md020"></a>
-
 ## MD020 - No space inside hashes on closed atx style heading
 
 Tags: headings, headers, atx_closed, spaces
@@ -650,8 +618,6 @@ space:
 Note: this rule will fire if either side of the heading is missing spaces.
 
 Rationale: Violations of this rule can lead to improperly rendered content.
-
-<a name="md021"></a>
 
 ## MD021 - Multiple spaces inside hashes on closed atx style heading
 
@@ -682,8 +648,6 @@ spaces.
 
 Rationale: Extra space has no purpose and does not affect the rendering of
 content.
-
-<a name="md022"></a>
 
 ## MD022 - Headings should be surrounded by blank lines
 
@@ -727,8 +691,6 @@ Rationale: Aside from aesthetic reasons, some parsers, including kramdown, will
 not parse headings that don't have a blank line before, and will parse them as
 regular text.
 
-<a name="md023"></a>
-
 ## MD023 - Headings must start at the beginning of the line
 
 Tags: headings, headers, spaces
@@ -753,8 +715,6 @@ Some text
 
 Rationale: Headings that don't start at the beginning of the line will not be
 parsed as headings, and will instead appear as regular text.
-
-<a name="md024"></a>
 
 ## MD024 - Multiple headings with the same content
 
@@ -799,8 +759,6 @@ in change logs):
 
 Rationale: Some markdown parsers generate anchors for headings based on the
 heading name; headings with the same content can cause problems with that.
-
-<a name="md025"></a>
 
 ## MD025 - Multiple top level headings in the same document
 
@@ -847,8 +805,6 @@ serves as the title for the document. If this convention is in use, then there
 can not be more than one title for the document, and the entire document
 should be contained within this heading.
 
-<a name="md026"></a>
-
 ## MD026 - Trailing punctuation in heading
 
 Tags: headings, headers
@@ -879,8 +835,6 @@ equivalent to disabling the rule.
 Rationale: Headings are not meant to be full sentences. More information:
 <https://cirosantilli.com/markdown-style-guide#punctuation-at-the-end-of-headers>
 
-<a name="md027"></a>
-
 ## MD027 - Multiple spaces after blockquote symbol
 
 Tags: blockquote, whitespace, indentation
@@ -903,8 +857,6 @@ To fix, remove any extraneous space:
 ```
 
 Rationale: Consistent formatting makes it easier to understand a document.
-
-<a name="md028"></a>
 
 ## MD028 - Blank line inside blockquote
 
@@ -946,8 +898,6 @@ blockquote symbol at the beginning of the blank line:
 Rationale: Some markdown parsers will treat two blockquotes separated by one
 or more blank lines as the same blockquote, while others will treat them as
 separate blockquotes.
-
-<a name="md029"></a>
 
 ## MD029 - Ordered list item prefix
 
@@ -1038,8 +988,6 @@ The fix is to indent the code block so it becomes part of the preceding list ite
 
 Rationale: Consistent formatting makes it easier to understand a document.
 
-<a name="md030"></a>
-
 ## MD030 - Spaces after list markers
 
 Tags: ol, ul, whitespace
@@ -1111,8 +1059,6 @@ for your selected document style.
 
 Rationale: Violations of this rule can lead to improperly rendered content.
 
-<a name="md031"></a>
-
 ## MD031 - Fenced code blocks should be surrounded by blank lines
 
 Tags: code, blank_lines
@@ -1160,8 +1106,6 @@ Disabling this behavior for lists can be useful if it is necessary to create a
 Rationale: Aside from aesthetic reasons, some parsers, including kramdown, will
 not parse fenced code blocks that don't have blank lines before and after them.
 
-<a name="md032"></a>
-
 ## MD032 - Lists should be surrounded by blank lines
 
 Tags: bullet, ul, ol, blank_lines
@@ -1199,8 +1143,6 @@ Some text
 Rationale: Aside from aesthetic reasons, some parsers, including kramdown, will
 not parse lists that don't have blank lines before and after them.
 
-<a name="md033"></a>
-
 ## MD033 - Inline HTML
 
 Tags: html
@@ -1226,8 +1168,6 @@ Note: To allow specific HTML elements, use the 'allowed_elements' parameter.
 Rationale: Raw HTML is allowed in markdown, but this rule is included for
 those who want their documents to only include "pure" markdown, or for those
 who are rendering markdown documents in something other than HTML.
-
-<a name="md034"></a>
 
 ## MD034 - Bare URL used
 
@@ -1272,8 +1212,6 @@ The use of quotes around a bare link will _not_ trigger this rule, either:
 Rationale: Without angle brackets, the URL isn't converted into a link by many
 markdown parsers.
 
-<a name="md035"></a>
-
 ## MD035 - Horizontal rule style
 
 Tags: hr
@@ -1315,8 +1253,6 @@ the 'style' option is a string containing the exact horizontal rule text that
 is allowed.
 
 Rationale: Consistent formatting makes it easier to understand a document.
-
-<a name="md036"></a>
 
 ## MD036 - Emphasis used instead of a heading
 
@@ -1362,8 +1298,6 @@ Rationale: Using emphasis instead of a heading prevents tools from inferring
 the structure of a document. More information:
 <https://cirosantilli.com/markdown-style-guide#emphasis-vs-headers>.
 
-<a name="md037"></a>
-
 ## MD037 - Spaces inside emphasis markers
 
 Tags: whitespace, emphasis
@@ -1399,8 +1333,6 @@ Rationale: Emphasis is only parsed as such when the asterisks/underscores
 aren't completely surrounded by spaces. This rule attempts to detect where
 they were surrounded by spaces, but it appears that emphasized text was
 intended by the author.
-
-<a name="md038"></a>
 
 ## MD038 - Spaces inside code span elements
 
@@ -1439,8 +1371,6 @@ markers from an embedded backtick:
 
 Rationale: Violations of this rule can lead to improperly rendered content.
 
-<a name="md039"></a>
-
 ## MD039 - Spaces inside link text
 
 Tags: whitespace, links
@@ -1460,8 +1390,6 @@ To fix this, remove the spaces surrounding the link text:
 ```
 
 Rationale: Consistent formatting makes it easier to understand a document.
-
-<a name="md040"></a>
 
 ## MD040 - Fenced code blocks should have a language specified
 
@@ -1491,8 +1419,6 @@ echo Hello world
 Rationale: Specifying a language improves content rendering by using the
 correct syntax highlighting for code. More information:
 <https://cirosantilli.com/markdown-style-guide#option-code-fenced>.
-
-<a name="md041"></a>
 
 ## MD041 - First line in file should be a top level heading
 
@@ -1529,8 +1455,6 @@ use of front matter by this rule, specify `""` for `front_matter_title`.
 Rationale: The top level heading often acts as the title of a document. More
 information: <https://cirosantilli.com/markdown-style-guide#top-level-header>.
 
-<a name="md042"></a>
-
 ## MD042 - No empty links
 
 Tags: links
@@ -1562,8 +1486,6 @@ But non-empty fragments will not:
 ```
 
 Rationale: Empty links do not lead anywhere and therefore don't function as links.
-
-<a name="md043"></a>
 
 ## MD043 - Required heading structure
 
@@ -1629,8 +1551,6 @@ simplicity, a file may use any supported heading style.
 Rationale: Projects may wish to enforce a consistent document structure across
 a set of similar content.
 
-<a name="md044"></a>
-
 ## MD044 - Proper names should have the correct capitalization
 
 Tags: spelling
@@ -1656,8 +1576,6 @@ the proper capitalization, specify the desired letter case in the `names` array:
 Set the `code_blocks` parameter to `false` to disable this rule for code blocks.
 
 Rationale: Incorrect capitalization of proper names is usually a mistake.
-
-<a name="md045"></a>
 
 ## MD045 - Images should have alternate text (alt text)
 
@@ -1689,8 +1607,6 @@ Guidance for writing alternate text is available from the [W3C](https://www.w3.o
 
 Rationale: Alternate text is important for accessibility and describes the
 content of an image for people who may not be able to see it.
-
-<a name="md046"></a>
 
 ## MD046 - Code block style
 
@@ -1724,8 +1640,6 @@ be consistent within the document (`consistent`).
 
 Rationale: Consistent formatting makes it easier to understand a document.
 
-<a name="md047"></a>
-
 ## MD047 - Files should end with a single newline character
 
 Tags: blank_lines
@@ -1753,8 +1667,6 @@ This file ends with a newline.
 
 Rationale: Some programs have trouble with files that do not end with a newline.
 More information: <https://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file>.
-
-<a name="md048"></a>
 
 ## MD048 - Code fence style
 
