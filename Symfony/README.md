@@ -47,3 +47,4 @@ alias symfony="/home/user/.symfony/bin/symfony"
         bin/console make:entity
         bin/console make:migration
         bin/console doctrine:query:sql 'acual query'
+        bin/console make:twig-extension
