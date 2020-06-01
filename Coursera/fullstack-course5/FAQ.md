@@ -1,6 +1,7 @@
 # Fullstack Course 5 Frequently Asked Questions
 
 ## Table of Contents
+
 - [How to ask and get your question answered - A MUST READ!](#how-to-ask-and-get-your-question-answered-a-must-read)
 - [Do I have to use Atom?](#do-i-have-to-use-atom)
 - [Duplicate error with ng-repeat](#duplicate-error-with-ng-repeat)
@@ -12,8 +13,8 @@
 - [Service factory - two methods](#service-factory---two-methods)
 - [Cross origin error](#cross-origin-error)
 
-
 ### How to ask and get your question answered: A MUST READ!
+
 There is a simple theme to this answer: Help others help you!
 
 Before I dive into how you should ask your question, let me put things into perspective. You are asking others to spend their time helping you figure out your issue for *free*. You should do all you can to help them minimize the time they spend helping you upfront. It's the *least* you can do.
@@ -28,8 +29,8 @@ Here is a general guide as to what you should provide:
 2. Describe your issue with specifics. Don't just say "it doesn't work." Explain what isn't working correctly with steps of what you did when you are experiencing this behavior.
 
 3. Commit your code with the issue to GitHub and provide 2 links:
-    * Link to your repository where people can clone your code and quickly look at it on their own machines.
-    * Link to your *deployed* website (using github.io, i.e., GitHub Pages) so people don't have to spend their time trying to deploy your site just to see for themselves what's going on.
+    - Link to your repository where people can clone your code and quickly look at it on their own machines.
+    - Link to your *deployed* website (using github.io, i.e., GitHub Pages) so people don't have to spend their time trying to deploy your site just to see for themselves what's going on.
 
     *Rarely (but it happens), it's appropriate to simply provide a **small** code snippet that you have a question about. When you do, make sure to use the <> code formatter on Coursera to place your code snippet into the post. Don't just copy/paste it straight into the text of the post. It's very hard to read.*
 
@@ -38,6 +39,7 @@ Here is a general guide as to what you should provide:
  **Last, but certainly not least!** I can't recount every scenario that can occur in this short guide. **Use common sense.** Ask yourself: If I came up to a total stranger in this class and showed them my post, would they have enough information to help me or would they for sure have to ask me something? If they would have to ask you something, you are not done with your post. Yes, of course, there are times when you yourself don't know what you don't know. That's ok. Just put in an honest effort to HELP OTHERS HELP YOU.
 
 ### Do I have to use Atom?
+
 **No.** You can use any editor you like
 
 ### Duplicate error with ng-repeat
@@ -46,11 +48,12 @@ In order for angular to know exactly what items have changed, it calculates a ha
 
 In your case, to get around this, there's a `track by` expression that you can add to the end of the ng-repeat expression. This expression lets you define a property that uniquely identifies each item in the array. For arrays with primitive types, one approach is to use `track by $index` which tracks each item in the array by the objects position within the array.
 
-```
+```html
 <div ng-repeat="num in [1, 2, 2, 3] track by $index">
   {{num}}
 </div>
 ```
+
 By adding the track by `$index`, you will not get the duplicate error.
 
 ### What is MVVM? MVC vs MVVM?
@@ -58,9 +61,9 @@ By adding the track by `$index`, you will not get the duplicate error.
 ### Terminalogy question
 
 >You are using the term "ViewModel" for the design pattern of Angular. I hadn't heard "Model - View - ViewModel" before. I frequently >heard "Model - View - Controller" though (Rails etc.).
-
+>
 >It seems to me like both is exactly the same, since the "ViewModel" does get called "controller" in the examples.
-
+>
 >What motivates the choice of the term "ViewModel" instead of "Controller"? Making it clearer that the controller connects view and model? >Or are there any differences?
 
 MVC and MVVM are indeed different. I will refer you to a great StackOverlow post below, but first let me drop a couple of differences off the top of my head.
@@ -77,7 +80,7 @@ Although, I am not 100% sure why mixing data and behavior is inherently a bad th
 
 Here is the link I referred to in the beginning of the post:
 
-http://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm
+<http://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm>
 
 Look at the answer with the green checkmark.
 
@@ -103,16 +106,16 @@ Ok, so enough about patterns. Back to MVVM. This pattern can be implemented diff
 
 Ok, so on its own, this may seem rather abstract. Let's bring in angular and add some context. So how does angular implement MVVM? Let's assume we have the following code.
 
-```
+```html
 <html ng-app="UserApp">
   
   <!-- View that will be bound to controller -->
   <body ng-controller="UserController">
     <h1>My name is {{fullname}}</h1>
-    
+
     My favorite programming language is <input type="text" ng
         -model="favoriteProgrammingLanguage"/>
-    
+
   </body>
 </html>
 ```
@@ -130,7 +133,6 @@ angular
 })
 ```
 
-
 Here we have an application that contains a view, a controller and some data that we want to render. We also included an input field that allows a user to type their favorite programming language. So let's break down this page to show the components used and how they related to MVVM.
 
 Model - represents and holds raw data/ Data/Business Logic
@@ -138,7 +140,7 @@ Model - represents and holds raw data/ Data/Business Logic
 Our data here is 'John Flores' which is being stored in `$scope`. We also have a variable that is storing a users favorite programming language. This would be another piece of raw data would is associated to the model. We are not concerned with how this data will be rendered. We just care that we are storing it and that we have access to it. You will also notice that the description in the lecture for `Model` also includes business logic. Well, to illustrate that, suppose we have an object called `userService` that is responsible for returning to us a users full name. So let's take that the controller we defined above and slightly modify it to include the following:
 
 ```javascript
-// Do not focus on the controller but just the data that is 
+// Do not focus on the controller but just the data that is
 // enclosed in the controller
 //.controller('UserController', function($scope, userService) {
   
@@ -148,7 +150,6 @@ Our data here is 'John Flores' which is being stored in `$scope`. We also have a
 //})
 ```
 
-
 Note that for the sake of explaining this, I've commented out the controller portion. I would like you to focus on the aspects that deal strictly with the raw data.
 
 Again, we are dealing with data only. The `userService.getFullname()` method may contain business logic that ensures data is formatted properly or that we are inputting the appropriate content. Or maybe it will fetch data from an external resource using ajax. Again, we are strictly focused on storing and handling the raw data and not worried about where it will be placed in a view.
@@ -157,14 +158,13 @@ View - UI/Presentation/ UI declares events
 
 We now arrive at the view. In an abstract sense, the view only displays the data it is given. In our example above, the view is the following:
 
-
 ```html
 <body ng-controller="UserController">
     <h1>My name is {{fullname}}</h1>
-    
+
     My favorite programming language is <input type="text" ng
         -model="favoriteProgrammingLanguage"/>
-    
+
   </body>
 ```
 
@@ -200,16 +200,16 @@ Lastly, how is this magic happening? This is where the Declarative Binder comes 
 ## Provider vs Factory and everything in between
 
 ### Angular module Provider vs Factory
+
 >So Yaakov said that .provider is what is actually used by Angular behind the scenes when we use .factory or .service. It is the most >verbose and flexible because we can configure it at the application bootstrapping and not only in the run time.
-
+>
 >But I don't actually get why is it any better than the .facotry?
-
+>
 >I can in fact set defaults in the factory function definition just like the provider function definition. I just have to provide the defaults in an object or an array and pass it to the returned service either way.
-
+>
 >And concerning the .config module method that comes after .provider, I don't get why and when should we use it? Yaakov used it to modify the default value he had set in the provider function, and this is just equal to going to the provider function and simply changing the defaults ourselves.
-
+>
 >Since both the provider function definition and the .config module method set the initial values of my service before my application starts, why should I use .config? Moreover, why should I use a .provider instead of a .factory in the first place?
-
 
 Great questions.
 
@@ -252,12 +252,10 @@ Another thing to remember is that it's good to make your services/factories as c
 
 Like in the case of the `$httpProvider`, imagine if the angular team decided to add a default header `x-angular-rocks` as part of their `$http` service. This while funny, may not be appropriate for everyone. You'd want the ability to control what defaults get applied when you use the `$http` service because you don't have direct access to modifying the `$http` service code.
 
-
-
 ### Is it possible for a service that's generated by a factory to be shared across multiple controllers?
 
 >In the example of factory, I see that the service is initialized inside the controller code, I'm wondering if there is another way to initiate the service outside the controller so that the same instance of the service is shared across 2 or more controllers.
-
+>
 >Specifically is it possible to code lecture20 example with factory instead of service?
 
 Yes, with a service, you don't return anything in the function constructor. You simply add everything to `this` like the following:
@@ -322,15 +320,15 @@ angular
   .provider('shoppingService', function () {
     var provider = this;
     provider.config.maxItems = 10;
-    
+
     // This is what gets injected into controllers, services, etc
     provider.$get = function () {
       return function (name) {
-        return new ShoppingListService(provider.config.maxItems, 
+        return new ShoppingListService(provider.config.maxItems,
             name)
       }
     };
-    
+
   });
   ```
   
@@ -353,7 +351,6 @@ Hey Kollivakkam!
 Great question. So let's take a step back and look at angular factories from a high level view. In angular.factory(), you're able to return anything you want. That's one core differentiation from using angular.service().
 
 for instance, the following are examples of factories
-
 
 ```javascript
 angular
@@ -389,10 +386,9 @@ angular
 
 Yaakov was just explaining the different ways that you could go about creating a factory that returns a new configured service. Whether you return a function() or an object literal that contains a function that creates new objects is entirely up to you. It just depends on how much functionality you want to expose with the factory.
 
-For instance, let's say the built-in `$log ` service was not good enough and you created a new logger called SuperLogger (this is made up. Just assume it has info(), debug() etc methods). Now let's assume you wanted to instantiate one with a different name every time you used it. So you can create a factory (SuperLoggerFactory) that will instantiate new instances of SuperLogger every time the return function is called.
+For instance, let's say the built-in `$log` service was not good enough and you created a new logger called SuperLogger (this is made up. Just assume it has info(), debug() etc methods). Now let's assume you wanted to instantiate one with a different name every time you used it. So you can create a factory (SuperLoggerFactory) that will instantiate new instances of SuperLogger every time the return function is called.
 
 So one way Yaakov proposed is the following:
-
 
 ```javascript
 .factory('SuperLoggerFactory', function (SuperLogger) {
@@ -406,7 +402,6 @@ So one way Yaakov proposed is the following:
 ```
 
 Now, let's say we wanted to use it in a controller
-
 
 ```javascript
 .controller('UserController', function (SuperLoggerFactory) {
@@ -423,7 +418,6 @@ Notice here how `SuperLoggerFactory` points to a function that accepts a paramet
 
 Now, you asked, well, what about object literals? So, let's say, you still wanted the new logger but maybe you wanted to track how many times a SuperLogger has been created. Let's modify our code so that we have an object literal that contains two methods, one to create a new SuperLogger instance and increment the count, and then another method that simply returns that count.
 
-
 ```javascript
 .factory('SuperLoggerFactory', function (SuperLogger) {
   // Tracks how many times a SuperLogger has been instantiated
@@ -436,7 +430,7 @@ Now, you asked, well, what about object literals? So, let's say, you still wante
       count++;
       return new SuperLogger(loggerName);
     },
-    
+
     // Returns how many times it's been instantiated
     createCount: function() {
       return count;
@@ -445,6 +439,7 @@ Now, you asked, well, what about object literals? So, let's say, you still wante
   
 })
 ```
+
 Now to use this, you can do the following:
 
 ```javascript
@@ -460,5 +455,5 @@ Now to use this, you can do the following:
 Notice how with both methods, we're still able to create a new configured SuperLogger instance. In the second instance, we returned an object so that we could attach additional behavior. So it's just up to you how much you want to expose.
 
 ## Cross Origin Error
-This occurs because you are not running your application from a web-server. Simply opening the file from a web-browser will usually not work. Run the application using `browser-sync`.
 
+This occurs because you are not running your application from a web-server. Simply opening the file from a web-browser will usually not work. Run the application using `browser-sync`.

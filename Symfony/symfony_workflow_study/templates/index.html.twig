@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <ul>
+                {% for transition, isAvailable in transitions  %}
+                    <li>{{ transition | replace({'_': ' '}) | title }}? <i class="fa fa-{{ isAvailable ? 'check' : 'times' }}" aria-hidden="true"></i></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
