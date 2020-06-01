@@ -1,0 +1,39 @@
+framework:
+    # lots of
+    # other symfony framework
+    # config here
+    workflows:
+        # type by default always workflow
+        # example of access $stateMachine = $this->get('state_machine.simple_state_machine_example');
+        simple_state_machine_example: # this definition in used for access in whole project
+            supports:
+                - App\Entity\SimpleStateMachineExample
+            type: 'state_machine'
+            places:
+                - a
+                - b
+                - c
+            # initial place for entity, workflow will start from place b
+            initial_marking: b
+            # this section is used to change marketing to status
+            marking_store:
+                type: 'method'
+                property: 'status'
+            transitions:
+                start:
+                    from: a
+                    to: b
+                end:
+                    from: b
+                    to: c
+        # type by default is workflow, it's mean that entity can be in tow different states at the same time
+        customer_singup:
+            supports: App\Entity\Customer
+            places:
+                - prospect
+                - free_customer
+            initial_marking: prospect
+            transitions:
+                sing_up:
+                    from: prospect
+                    to: free_customer
