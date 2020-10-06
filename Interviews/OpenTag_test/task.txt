@@ -1,0 +1,63 @@
+<?php
+
+оптимизировать и что здесь не так
+
+class Car
+{
+
+    public function driveWithSpeed($fuel, $speed)
+    {
+        switch ($fuel) {
+            case 'gas':
+                $engine = new GasEngine();
+                break;
+            case 'diesel':
+                $engine = new DieselEngine();
+                break;
+            default:
+                throw EngineNotFoundException();
+        }
+
+        return $engine->drive($speed);
+    }
+}
+
+abstract class AbstractEngine
+{
+    /**
+     * @param int $speed
+     *
+     * @return float
+     */
+    protected function drive($speed): DataTransferObject
+    {
+        //.....
+    }
+}
+
+class GasEngine extends AbstractEngine
+{
+    /**
+     * @param float $speed
+     *
+     * @return void
+     */
+    public function drive($speed)
+    {
+        //.....
+    }
+}
+
+class DieselEngine extends AbstractEngine
+{
+    /**
+     * @param int $speed
+     *
+     * @return bool
+     */
+    public function drive($speed)
+    {
+        //.....
+    }
+}
+
