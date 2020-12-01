@@ -1,4 +1,5 @@
 .idea/
+.vscode/
 Interview/SOLID/vendor/
 Interviews/Tallium_test/vendor/
 Interview/SOLID/file.txt
