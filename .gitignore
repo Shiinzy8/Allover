@@ -1,5 +1,6 @@
 .idea/
 .vscode/
+__pycache__/
 Interview/SOLID/vendor/
 Interviews/Tallium_test/vendor/
 Interview/SOLID/file.txt
