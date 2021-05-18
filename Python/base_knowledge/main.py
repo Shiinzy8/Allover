@@ -46,3 +46,11 @@ def say_hi_dec():
     return 'hello world'
 
 print(say_hi_dec())
+
+test = 'Тестовая строка'
+test2 = 2
+
+print(test + str(test2))
+print(int('2' + '4'))
+print(float("210" * int("2")))
+
