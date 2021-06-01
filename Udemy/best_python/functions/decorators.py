@@ -63,3 +63,23 @@ def hello_world7():
     print("Hello, world 7!")
 
 hello_world7()
+
+from functools import wraps
+
+def measure_time_with_wrap(func):
+    @wraps(func) # with this decorator help will show annotation of a func not a decoratot
+    def wrap(*args, **kwargs):
+        start = timer()
+        time.sleep(2)
+        func(*args, **kwargs)
+
+        finish = timer()
+
+        print(f'Function {func.__name__} took {finish-start} for execution')
+    return wrap
+
+@measure_time_with_wrap
+def hello_world8():
+    print("Hello, world 8!")
+
+help(hello_world8)
