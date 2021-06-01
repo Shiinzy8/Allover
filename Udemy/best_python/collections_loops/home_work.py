@@ -34,7 +34,7 @@ while should_continue:
         continue
 
     gen = {1:'r', 2:'s', 3:'p'}
-    comp_choise = gen[random(1,2,3)]
+    comp_choise = gen[random.choice([1,2,3])]
 
     print(f'Compor choice = {comp_choise}')
 
