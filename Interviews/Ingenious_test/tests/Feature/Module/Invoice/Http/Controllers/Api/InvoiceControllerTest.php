@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Arr;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class InvoiceControllerTest extends TestCase
@@ -23,14 +24,14 @@ class InvoiceControllerTest extends TestCase
 
         // try to get not existing invoice
         $response = $this->getJson(route('invoices.show', ['invoice' => $uuid]));
-        $response->assertStatus(404);
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
 
         $invoice = InvoiceFactory::new()->create();
 
         // try to get existing invoice
         $response = $this->getJson(route('invoices.show', ['invoice' => $invoice]));
         $jsonResponse = json_decode($response->getContent(), true);
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
         $this->assertEquals($invoice->getPrice(), Arr::get($jsonResponse, 'data.Total price'));
         $response->assertJsonStructure([
             'data' => [
@@ -71,17 +72,17 @@ class InvoiceControllerTest extends TestCase
 
         // try to approve for the  invoice first time
         $response = $this->postJson(route('invoices.approve', ['invoice' => $invoice]));
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
         $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::APPROVED,]);
 
         // try to approve the invoice twice
         $response = $this->postJson(route('invoices.approve', ['invoice' => $invoice]));
-        $response->assertStatus(422);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::APPROVED,]);
 
         // try to reject the invoice after approve
         $response = $this->postJson(route('invoices.reject', ['invoice' => $invoice]));
-        $response->assertStatus(422);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::APPROVED,]);
     }
 
@@ -91,17 +92,17 @@ class InvoiceControllerTest extends TestCase
 
         // try to reject for the first time
         $response = $this->postJson(route('invoices.reject', ['invoice' => $invoice]));
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
         $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::REJECTED,]);
 
         // try to reject the invoice twice
         $response = $this->postJson(route('invoices.reject', ['invoice' => $invoice]));
-        $response->assertStatus(422);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::REJECTED,]);
 
         // try to approve the invoice after reject
         $response = $this->postJson(route('invoices.approve', ['invoice' => $invoice]));
-        $response->assertStatus(422);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::REJECTED,]);
     }
 }

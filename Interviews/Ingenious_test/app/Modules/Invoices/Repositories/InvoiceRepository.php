@@ -5,8 +5,9 @@ namespace App\Modules\Invoices\Repositories;
 use App\Domain\Enums\StatusEnum;
 use App\Modules\Approval\Api\ApprovalFacadeInterface;
 use App\Modules\Approval\Api\Dto\ApprovalDto;
+use App\Modules\Invoices\Exceptions\InvoiceApproveException;
+use App\Modules\Invoices\Exceptions\InvoiceRejectException;
 use App\Modules\Invoices\Models\Invoice;
-use App\Modules\Invoices\Models\InvoiceProductLine;
 use LogicException;
 
 class InvoiceRepository
@@ -22,7 +23,7 @@ class InvoiceRepository
         try {
             $this->approvalService->approve(new ApprovalDto($invoice->id, $invoice->status, $invoice::class));
         } catch (LogicException $ex) {
-            return false;
+            throw new InvoiceApproveException();
         }
 
         Invoice::query()
@@ -37,7 +38,7 @@ class InvoiceRepository
         try {
             $this->approvalService->reject(new ApprovalDto($invoice->id, $invoice->status, $invoice::class));
         } catch (LogicException $ex) {
-            return false;
+            throw new InvoiceRejectException();
         }
 
         Invoice::query()
