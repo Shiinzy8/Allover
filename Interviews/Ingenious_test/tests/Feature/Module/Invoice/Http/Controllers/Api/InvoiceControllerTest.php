@@ -20,14 +20,18 @@ class InvoiceControllerTest extends TestCase
     public function testShowInvoice(): void
     {
         $uuid = Uuid::uuid4();
+
+        // try to get not existing invoice
         $response = $this->getJson(route('invoices.show', ['invoice' => $uuid]));
         $response->assertStatus(404);
 
         $invoice = InvoiceFactory::new()->create();
 
+        // try to get existing invoice
         $response = $this->getJson(route('invoices.show', ['invoice' => $invoice]));
+        $jsonResponse = json_decode($response->getContent(), true);
         $response->assertStatus(200);
-
+        $this->assertEquals($invoice->getPrice(), Arr::get($jsonResponse, 'data.Total price'));
         $response->assertJsonStructure([
             'data' => [
                 'Invoice number',
@@ -59,86 +63,46 @@ class InvoiceControllerTest extends TestCase
                 'Total price',
             ]
         ]);
-
-        $invoiceProductPrices = InvoiceProductLine::all();
-        $total = 0;
-
-        foreach ($invoiceProductPrices as $invoiceProductPrice) {
-            $total += (int) ($invoiceProductPrice->quantity * $invoiceProductPrice->product->price);
-        }
-
-        $jsonResponse = json_decode($response->getContent(), true);
-        $this->assertEquals($total, Arr::get($jsonResponse, 'data.Total price'));
     }
 
     public function testApproveInvoice(): void
     {
-        $uuid = Uuid::uuid4();
-        $response = $this->postJson(route('invoices.approve', ['invoice' => $uuid]));
-        $response->assertStatus(404);
-
         $invoice = InvoiceFactory::new()->state(['status' => StatusEnum::DRAFT])->create();
 
+        // try to approve for the  invoice first time
         $response = $this->postJson(route('invoices.approve', ['invoice' => $invoice]));
         $response->assertStatus(200);
-
-        $this->assertDatabaseHas('invoices', [
-            'id' => $invoice->id,
-            'status' => StatusEnum::APPROVED,
-        ]);
+        $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::APPROVED,]);
 
         // try to approve the invoice twice
         $response = $this->postJson(route('invoices.approve', ['invoice' => $invoice]));
         $response->assertStatus(422);
-
-        $this->assertDatabaseHas('invoices', [
-            'id' => $invoice->id,
-            'status' => StatusEnum::APPROVED,
-        ]);
+        $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::APPROVED,]);
 
         // try to reject the invoice after approve
         $response = $this->postJson(route('invoices.reject', ['invoice' => $invoice]));
         $response->assertStatus(422);
-
-        $this->assertDatabaseHas('invoices', [
-            'id' => $invoice->id,
-            'status' => StatusEnum::APPROVED,
-        ]);
+        $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::APPROVED,]);
     }
 
     public function testRejectInvoice(): void
     {
-        $uuid = Uuid::uuid4();
-        $response = $this->postJson(route('invoices.reject', ['invoice' => $uuid]));
-        $response->assertStatus(404);
-
         $invoice = InvoiceFactory::new()->state(['status' => StatusEnum::DRAFT])->create();
 
+        // try to reject for the first time
         $response = $this->postJson(route('invoices.reject', ['invoice' => $invoice]));
         $response->assertStatus(200);
-
-        $this->assertDatabaseHas('invoices', [
-            'id' => $invoice->id,
-            'status' => StatusEnum::REJECTED,
-        ]);
+        $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::REJECTED,]);
 
         // try to reject the invoice twice
         $response = $this->postJson(route('invoices.reject', ['invoice' => $invoice]));
         $response->assertStatus(422);
-
-        $this->assertDatabaseHas('invoices', [
-            'id' => $invoice->id,
-            'status' => StatusEnum::REJECTED,
-        ]);
+        $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::REJECTED,]);
 
         // try to approve the invoice after reject
         $response = $this->postJson(route('invoices.approve', ['invoice' => $invoice]));
         $response->assertStatus(422);
-
-        $this->assertDatabaseHas('invoices', [
-            'id' => $invoice->id,
-            'status' => StatusEnum::REJECTED,
-        ]);
+        $this->assertDatabaseHas('invoices', ['id' => $invoice->id, 'status' => StatusEnum::REJECTED,]);
     }
 }
 

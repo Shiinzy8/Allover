@@ -35,16 +35,6 @@ class InvoiceController extends Controller
     public function reject(Invoice $invoice): JsonResponse
     {
         return $this->getResponse($this->repository->rejected($invoice));
-        try {
-            $result = Invoice::query()
-                ->when($this->approvalFacade->reject(new ApprovalDto($invoice->id, $invoice->status, $invoice::class)))
-                ->where(['id' => $invoice->id, 'status' => StatusEnum::DRAFT])
-                ->update(['status' => StatusEnum::REJECTED]);
-        } catch (LogicException) {
-            $result = 0;
-        }
-
-        return $this->getResponse($result);
     }
 
      private function getResponse(bool $result): JsonResponse
