@@ -134,3 +134,100 @@ class NumberField {
 }
 
 $first_field = new NumberField(4,4);
+
+// Які проблеми ви бачите в реалізації снизу?
+
+use Psr\Http\Message\RequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
+
+
+// Controller
+class UserController {
+    const FILE_BUCKET = 'user-files';
+
+    public function create(Request $request): Response {
+        $user = new User($request);
+        $user->avatarUrl = md5(time()) . '.jpg'; // md5 не впевнений що це зараз актуальний алгоритм
+        if (!$user->save()) {
+            exit('Error saving user');
+        }
+        (new FileStorage($user, $request->getUploadedFiles()['avatar']))->store();
+        Email::send($user->email, 'Hi  email');
+
+        return new Response(302, ['Location' => '/']);
+    }
+}
+
+// Entity
+class User {
+    private int $id;
+    public $email;
+    public $password;
+    public $name;
+    public $avatarUrl;
+
+    public function __construct(Request $request) // не має бути конструктора
+    {
+        $this->email = $request->getBody()['email'];
+        $this->password = $request->getBody()['password'];
+        $this->name = $request->getBody()['name'];
+    }
+
+    public function save() {
+        $values = [
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':name' => $this->name,
+            ':avatar_url' => $this->avatarUrl,
+        ];
+        /** @var \PDO $db */
+        $db = \DB::getSingleton(); // явно не задача ентіті
+        if (empty($this->id)) {
+            $sth = $db->prepare("INSERT INTO users (email, password, name, avatar_url) VALUES (:email, :password, :name, :avatar_url)");
+        } else {
+            $values[':id'] = $this->id;
+            $sth = $db->prepare('UPDATE users SET email = :email, password = :password, name = :name, avatar_url = :avatar_url WHERE id = :id');
+        }
+        return $sth->execute($values);
+    }
+
+}
+
+// Service
+class Email {
+    public static function send(string $email,string $text) {
+        $mg = \Mailgun\Mailgun::create('auth key');
+        $mg->messages()->send($email, ['text' => $text]);
+    }
+}
+
+// Service
+class FileStorage {
+
+    private \Aws\S3\S3Client $awsClient;
+    private string $url;
+    private $fileData;
+
+    public function __construct(User $user, $fileData) {
+        $this->awsClient = new Aws\S3\S3Client([
+            'credentials' => [
+                'key' => 'key', // ці дані можна брати з env файла
+                'secret' => 'my_super_secret',
+            ],
+        ]);
+        $this->url = $user->avatarUrl;
+        $this->fileData = $fileData;
+    }
+
+    public function store(): void
+    {
+        $result = $this->awsClient->putObject([
+            'Bucket' => UserController::FILE_BUCKET,
+            'Key' => $this->url,
+            'Body' => $this->fileData,
+        ]);
+        if (!$result) {
+            throw new \Exception('Error');
+        }
+    }
+}

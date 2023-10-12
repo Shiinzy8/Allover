@@ -1,0 +1,15 @@
+.specific {
+    display:inline; 
+    float:left;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+    float:left;
+    text-align: center;
+}
+
+.fa-camera-retro:hover {
+    cursor: pointer;
+}

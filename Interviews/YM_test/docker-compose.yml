@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  lumen:
+    build: php
+    container_name: lumen-app
+    volumes:
+      - ./ym-api:/var/www
+    working_dir: /var/www
+    environment:
+      - APP_ENV=local
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: lumen-postgres
+    environment:
+      POSTGRES_DB: ym_database
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  composer:
+    image: composer:latest
+    container_name: lumen-composer
+    volumes:
+      - ./ym-api:/app
+    working_dir: /app
+    command: install
+
+  artisan:
+    image: php:8.2-cli
+    container_name: lumen-artisan
+    volumes:
+      - ./ym-api:/var/www
+    working_dir: /var/www
+    depends_on:
+      - postgres
+    entrypoint: php artisan
+
+  nginx:
+    image: nginx:latest
+    container_name: lumen-nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./ym-api:/var/www
+    ports:
+      - "80:80"
+    depends_on:
+      - lumen

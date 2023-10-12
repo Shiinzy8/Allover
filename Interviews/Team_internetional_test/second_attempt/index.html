@@ -1,0 +1,41 @@
+<!-- On hover of an HTML element with a specific CSS class an icon will be displayed on the right of the HTML element.
+On hover of this icon a tooltip will display the following text « Copy to clipboard » and the cursor will change to « pointer ».
+If we click on the icon the text inside the HTML element is copied to clipboard and the text of the tooltip changed to « Copied ».
+If HTML element attribute « data-copy » is present the value of « data-copy » will be copied to the clipboard.
+
+
+The use of JS external libraries is limited to jQuery.
+The use of CSS library is not restricted.
+Please send us a package with everything needed with working examples testable that cover all use cases.
+
+What can we add to improve this tool? -->
+
+<!-- 1 .іконка без ховеру, тултіп там не просто так у завданні, а є кейс, що текст у ньому має змінитися на "copied", 
+щоб юзер зрозумів, що дія відбулася. 
+Там суть не в тезі, елементі JQuery який це все робить замість розробника чи назві тултіпу,
+ а в самому функціоналі, який не присутній.
+3. Відсутні дата-атрибути, а це було одним із ключових завдань, вони часто юзаються на проекті тому і вимога,
+ тут вона виконана.
+(Насправді це суто фронтендівський, причому, дуже застарілий ф-ал, тому цей пунк не виконан)-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="specific hover" data-copy="Text inside the HTML element data-copy attribute">Text inside the HMTL element</div>
+    <div class="hidden">
+        <i class="fa fa-camera-retro fa-5x"></i>
+        <span class="tooltip">Copy to clipboard</span>
+    </div>
+</body>
+</html>
