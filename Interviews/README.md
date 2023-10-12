@@ -5,7 +5,7 @@
 - [Evoplay](Evoplay)
 - [Fibonacci_test](Fibonacci_test)
 - [Ideone_test](Ideone_test)
-- [Ingenious_test](Ingeniou_test/README.md)
+- [Ingenious_test](Ingenious_test/README.md)
 - [Library_test](Library_test)
 - [OpenTag_test](OpenTag_test)
 - [Paysera_test](Paysera_test/README.md)

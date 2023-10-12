@@ -29,7 +29,7 @@
   - [Evoplay](Interviews/Evoplay)
   - [Fibonacci_test](Interviews/Fibonacci_test)
   - [Ideone_test](Interviews/Ideone_test)
-  - [Ingenious_test](Interviews/Ingeniou_test/README.md)
+  - [Ingenious_test](Interviews/Ingenious_test/README.md)
   - [Library_test](Interviews/Library_test)
   - [OpenTag_test](Interviews/OpenTag_test)
   - [Paysera_test](Interviews/Paysera_test/README.md)
