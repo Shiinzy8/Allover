@@ -9,7 +9,7 @@ $sideLength = 0;
 for ($i = 0; $i < $countArr; $i++) {
     if ($i == 0) {
         array_push($res, $arr[$i]);
-        array_splice($arr, $i, 1);
+        array_splice($arr, $i, 1); // remove element from array
         continue;
     }
     
