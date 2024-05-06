@@ -1,0 +1,19 @@
+App\Entity\Currency:
+  euro:
+    shortName: 'EUR'
+    name: 'Euro'
+  pln:
+    shortName: 'PLN'
+    name: 'Polish zloty'
+  chf:
+    shortName: 'CHF'
+    name: 'Swiss Franc'
+  czk:
+    shortName: 'CZK'
+    name: 'Czech Koruna'
+  hrk:
+    shortName: 'HRK'
+    name: 'Croatian Kuna'
+  bgn:
+    shortName: 'BGN'
+    name: 'Bulgarian Lev'

@@ -1,0 +1,46 @@
+App\Entity\Country:
+  countryAT:
+    shortName: 'AT'
+    name: 'Austria'
+    isEu: true
+    currency: '@euro'
+  countryBE:
+    shortName: 'BE'
+    name: 'Belgium'
+    isEu: true
+    currency: '@euro'
+  countryBG:
+    shortName: 'BG'
+    name: 'Bulgaria'
+    isEu: true
+    currency: '@bgn'
+  countryHR:
+    shortName: 'HR'
+    name: 'Croatia'
+    isEu: true
+    currency: '@hrk'
+  countryCZ:
+    shortName: 'CZ'
+    name: 'Czech Republic'
+    isEu: true
+    currency: '@czk'
+  countryDE:
+    shortName: 'DE'
+    name: 'Germany'
+    isEu: true
+    currency: '@euro'
+  countryPL:
+    shortName: 'PL'
+    name: 'Poland'
+    isEu: true
+    currency: '@pln'
+  countryFR:
+    shortName: 'FR'
+    name: 'France'
+    isEu: true
+    currency: '@euro'
+  countryCH:
+    shortName: 'CH'
+    name: 'Switzerland'
+    isEu: false
+    currency: '@chf'
