@@ -109,5 +109,5 @@ git commit
 - [ ] Second task
 - [ ] Third task
 
-Emoji are working too  
+Emoji are working here too  
 :+1: This PR looks great - it's ready to merge! :shipit:
